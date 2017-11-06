@@ -2,7 +2,7 @@
 # Python 2.7
 # Angelaz
 # By: LawlietJH
-# v1.0.2
+# v1.0.3
 
 
 
@@ -90,7 +90,7 @@ def Escanear(Pagina, Ruta):
 
 def Argumentos():
 	
-	global Pagina
+	global Pagina, Robot
 	
 	Args = sys.argv
 	
@@ -99,6 +99,14 @@ def Argumentos():
 		if Args[1] == "-P":
 			
 			Pagina = Args[2]
+			
+			return True
+		
+	elif len(Args) == 2:
+		
+		if Args[1] == "-R":
+			
+			Robot = True
 			
 			return True
 		
@@ -111,6 +119,7 @@ def Argumentos():
 
 
 Pagina = None
+Robot = None
 
 Rutas = [
 'account.html', 'account.php', 'adm.html', 'adm.php', 'adm/', 'adm/admloginuser.php', 'adm/index.html', 'adm/index.php', 'adm_auth.php', 'admin',
@@ -141,10 +150,13 @@ if __name__ == "__main__":
 	else:
 		
 		Pagina = "http://" + Pagina.replace("https://","").replace("http://","").split("/")[0]
-		
 		print("\n\n\t URL: " + Pagina)
 	
-	print Robots(Pagina)
+	if Robot == None:
+		
+		if raw_input("\n\n\n\t [~] Buscar Robots.txt [S/N]: ").lower() in ["s","si","y","yes"]: print Robots(Pagina)
+		
+	else: print Robots(Pagina)
 	
 	print "\n\n Buscando Admin Panels... \n\n"
 	
