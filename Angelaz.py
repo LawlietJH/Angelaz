@@ -2,7 +2,7 @@
 # Python 2.7
 # Angelaz
 # By: LawlietJH
-# v1.0.4
+# v1.0.5
 
 
 
@@ -11,17 +11,18 @@ import time
 import sys
 import os
 
-try:
-	
-	import requests
-
+try: import requests
 except:
-	
 	print "\n\n\t [+] Instalando Dependencias... Requests ",
 	os.system("python -m pip install requests > Nul")
-	print "OK"
-	time.sleep(3)
-	os.system("Cls")
+	try:
+		import requests
+		print "OK"
+		time.sleep(3)
+		os.system("Cls")
+	except:
+		print "\n\n\t [+] No Se Pudo Instalar 'requests'... Instalar manualmente.\n\n\t python -m pip install requests"
+		sys.exit(1)
 
 
 
@@ -146,12 +147,14 @@ def Argumentos():
 			
 			Lista = Args[4]
 			Pagina = Args[2]
+			Robot = False
 			return True
 		
 		elif Args[1] == "-L" and Args[3] == "-P":
 			
 			Lista = Args[2]
 			Pagina = Args[4]
+			Robot = False
 			return True
 			
 		else: return False
@@ -177,11 +180,13 @@ def Argumentos():
 		if Args[1] == "-P":
 			
 			Pagina = Args[2]
+			Robot = False
 			return True
 			
 		elif Args[1] == "-L":
 			
 			Lista = Args[2]
+			Robot = False
 			return True
 			
 		else: return False
@@ -240,11 +245,17 @@ if __name__ == "__main__":
 				
 				Rutas = []
 				
-				print "\n\n [~] Cargando Rutas..."
+				print "\n\n\n [~] Cargando Rutas..."
 				
-				for x in Lis: Rutas.append(x.replace("\n",""))
+				for x in Lis:
+					
+					if x.startswith("/"): x = x[1:]
+					
+					Rutas.append(x.replace("\n",""))
 				
-				print "\n\n [~] " + str(len(Rutas)) + " Rutas Cargadas"
+				print "\n\n\t [~] " + str(len(Rutas)) + " Rutas Cargadas"
+				
+				time.sleep(1)
 		
 		else:
 			
@@ -255,15 +266,21 @@ if __name__ == "__main__":
 	else:
 		
 		Pagina = "http://" + Pagina.replace("https://","").replace("http://","").split("/")[0]
-		print("\n\n\t URL: " + Pagina)
+		print("\n\n [+] URL: " + Pagina)
 	
 	if Robot == None:
 		
-		if raw_input("\n\n\n\t [~] Buscar Robots.txt [S/N]: ").lower() in ["s","si","y","yes"]: print Robots(Pagina)
+		if raw_input("\n\n\n\t [~] Buscar Robots.txt [S/N]: ").lower() in ["s","si","y","yes"]:
+			
+			print "\n\n [+] Buscando Robots.txt ..."
+			print Robots(Pagina)
 		
-	else: print Robots(Pagina)
+	elif Robot == True:
+		
+		print "\n\n [+] Buscando Robots.txt ..."
+		print Robots(Pagina)
 	
-	print "\n\n Buscando Admin Panels... \n\n"
+	print "\n\n [+] Buscando Admin Panels... \n\n"
 	
 	for Ruta in Rutas:
 		
