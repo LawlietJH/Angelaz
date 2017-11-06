@@ -2,7 +2,7 @@
 # Python 2.7
 # Angelaz
 # By: LawlietJH
-# v1.0.5
+# v1.0.6
 
 
 
@@ -29,63 +29,6 @@ except:
 #~ =====================================================================
 #~ =====================================================================
 #~ =====================================================================
-
-
-
-def Robots(Pagina):
-	
-	Cadena = ""
-	
-	try:
-		
-		Req = requests.get(Pagina + '/robots.txt')
-		http = Req.status_code
-		
-		if http == 200:
-			
-			if '<html>' in Req.text:
-				
-				return "\n\n\t [-] Robots.txt No Encontrado."
-				
-			else:
-				
-				Cadena += "\n\n\t [+] Robots.txt Encontrado."
-				Cadena += "\n\n\n\n [~] Contenido de Robots.txt:\n\n"
-				Cadena += "================================================\n\n\n"
-				Cadena +=  Req.text + "\n\n"
-				Cadena += "================================================\n\n"
-				
-				return Cadena
-		
-		else: return "\n\n\t [-] Robots.txt No encontrado."
-		
-	except: return "\n\n\t [-] Robots.txt No encontrado."
-
-
-
-def Escanear(Pagina, Ruta):
-	
-	try:
-		
-		Ruta = Pagina + Ruta
-		Req = requests.get(Ruta)
-		http = Req.status_code
-			
-		if http == 200:   print "\n ---> [+]  Admin Panel Encontrado: " + Ruta,						# 200 - OK.						Pagina Encontrada.
-		elif http == 301: print "\n [!] [301] Movido Permanentemente: " + Ruta,						# 301 - Moved Permanently.		Pagina Movida Permanentemente.
-		elif http == 302: print "\n ---> [+]  Vulnerabilidad Potencial [EAR] Encontrada: " + Ruta,	# 302 - Found.					Pagina Redireccionada.
-		elif http == 401: print "\n [!] [401] Acceso No Autorizado: " + Ruta,						# 401 - Unauthorized.			Pagina No Autorizada.
-		elif http == 403: print "\n [!] [403] Acceso Prohibido: " + Ruta,							# 403 - Forbidden.				Pagina Restringida.
-		elif http == 404: print "\n      [-]  " + Ruta,												# 404 - Not Found.				Pagina No Encontrada.
-		elif http == 410: print "\n [!] [410] Ya No Existe: " + Ruta,								# 410 - Gone.					Pagina Que Existia y No Volvera.
-		elif http == 500: print "\n [!] [500] Internal Server Error: " + Ruta,						# 500 - Internal Server Error.
-		else: print "\n [!] [" + str(http) + "] " + Ruta,
-	
-	except KeyboardInterrupt: exit(1)
-	except Exception as e:
-		
-		if str(type(e).__name__) == "ConnectionError": print "\n   X  [!]  " + Ruta + "\t <--- Error De Coneccion.",
-		else: print "\n  X   [!]  " + Ruta + "\t <--- " + str(type(e).__name__),
 
 
 
@@ -198,11 +141,83 @@ def Argumentos():
 			Robot = True
 			return True
 			
+		
+		if Args[1] == "-h" or Args[1] == "--help":
+			
+			os.system("Cls")
+			print "\n\n\n", Modo_De_Uso
+			sys.exit(1)
+			
 		else: return False
 		
 	elif len(Args) == 1: return True
 	
 	else: return False
+
+
+
+#========================================================================
+
+
+
+def Robots(Pagina):
+	
+	Cadena = ""
+	
+	try:
+		
+		Req = requests.get(Pagina + '/robots.txt')
+		http = Req.status_code
+		
+		if http == 200:
+			
+			if '<html>' in Req.text:
+				
+				return "\n\n\t [-] Robots.txt No Encontrado."
+				
+			else:
+				
+				Cadena += "\n\n\t [+] Robots.txt Encontrado."
+				Cadena += "\n\n\n\n [~] Contenido de Robots.txt:\n\n"
+				Cadena += "================================================\n\n\n"
+				Cadena +=  Req.text + "\n\n"
+				Cadena += "================================================\n\n"
+				
+				return Cadena
+		
+		else: return "\n\n\t [-] Robots.txt No encontrado."
+		
+	except: return "\n\n\t [-] Robots.txt No encontrado."
+
+
+
+def Escanear(Pagina, Ruta):
+	
+	try:
+		
+		Ruta = Pagina + Ruta
+		Req = requests.get(Ruta)
+		http = Req.status_code
+			
+		if http == 200:   print "\n ---> [+]  Admin Panel Encontrado: " + Ruta,						# 200 - OK.						Pagina Encontrada.
+		elif http == 301: print "\n [!] [301] Movido Permanentemente: " + Ruta,						# 301 - Moved Permanently.		Pagina Movida Permanentemente.
+		elif http == 302: print "\n ---> [+]  Vulnerabilidad Potencial [EAR] Encontrada: " + Ruta,	# 302 - Found.					Pagina Redireccionada.
+		elif http == 401: print "\n [!] [401] Acceso No Autorizado: " + Ruta,						# 401 - Unauthorized.			Pagina No Autorizada.
+		elif http == 403: print "\n [!] [403] Acceso Prohibido: " + Ruta,							# 403 - Forbidden.				Pagina Restringida.
+		elif http == 404: print "\n      [-]  " + Ruta,												# 404 - Not Found.				Pagina No Encontrada.
+		elif http == 410: print "\n [!] [410] Ya No Existe: " + Ruta,								# 410 - Gone.					Pagina Que Existia y No Volvera.
+		elif http == 500: print "\n [!] [500] Internal Server Error: " + Ruta,						# 500 - Internal Server Error.
+		else: print "\n [!] [" + str(http) + "] " + Ruta,
+	
+	except KeyboardInterrupt: exit(1)
+	except Exception as e:
+		
+		if str(type(e).__name__) == "ConnectionError": print "\n   X  [!]  " + Ruta + "\t <--- Error De Coneccion.",
+		else: print "\n  X   [!]  " + Ruta + "\t <--- " + str(type(e).__name__),
+
+
+
+#========================================================================
 
 
 
@@ -227,13 +242,47 @@ Rutas = [
 'webadmin.html', 'webadmin.php', 'webadmin/', 'webadmin/admin.html', 'webadmin/admin.php', 'webadmin/index.html', 'webadmin/index.php', 'webadmin/login.html', 'webadmin/login.php', 'wp-login.php'
 ]
 
+Modo_De_Uso = """ [+] Modo De Uso:\n\n\n Angelaz.py [-P Pagina.com][-L Rutas.txt][-R] | [-h|--help]
+
+
+  -h, --help            Muestra este Mensaje y Sale del Script.
+  
+  -P PAGINA.COM         Pagina a Escanear.
+  
+  -L LISTA.TXT          Archivo con la Lista de Rutas.txt.
+
+  -R                    Indica Si Se Desea Buscart El Archivo Robots.txt.
+
+
+  [+] Ejemplos:
+    
+  > Angelaz.py                      Corre El Script y Pide La Informacion
+                                    Necesaria De Forma Interna.
+  
+  > Angelaz.py -h                   Muestra El Mensaje de Ayuda.
+  
+  > Angelaz.py -P Pagina.com        Realiza Escaneo a La Pagina Usando 
+                                    Las Rutas En Lista Interna.
+                                                
+  > Angelaz.py -P xD.com -L Rutas.txt -R  Realiza Escaneo a La Pagina Usando 
+                                          Las Rutas Del Archivo de Rutas.txt
+                                          y Busca El Archivo Robots.txt.
+
+"""
+
+#========================================================================
+
 
 
 if __name__ == "__main__":
 	
 	xD = Argumentos()
 	
-	if xD == False: sys.exit(1)
+	if xD == False:
+		
+		os.system("Cls")
+		print Modo_De_Uso
+		sys.exit(1)
 	
 	os.system("Cls")
 	
@@ -260,6 +309,7 @@ if __name__ == "__main__":
 		else:
 			
 			print "\n\n\n\n\t [!] El Archivo " + Lista + " No Existe.\n\n"
+			print Modo_De_Uso
 			sys.exit(0)
 		
 	if Pagina == None: Pagina = "http://" + raw_input("\n\n\n\t [~] URL: ").replace("https://","").replace("http://","").split("/")[0]
