@@ -2,7 +2,7 @@
 # Python 2.7
 # Angelaz
 # By: LawlietJH
-# v1.0.3
+# v1.0.4
 
 
 
@@ -90,29 +90,112 @@ def Escanear(Pagina, Ruta):
 
 def Argumentos():
 	
-	global Pagina, Robot
+	global Pagina, Robot, Lista
 	
 	Args = sys.argv
 	
+	if len(Args) == 6:
+		
+		if Args[1] == "-R" and Args[2] == "-P" and Args[4] == "-L":
+			
+			Lista = Args[5]
+			Pagina = Args[3]
+			Robot = True
+			return True
+			
+		elif Args[1] == "-R" and Args[2] == "-L" and Args[4] == "-P":
+			
+			Lista = Args[3]
+			Pagina = Args[5]
+			Robot = True
+			return True
+			
+		elif Args[1] == "-P" and Args[3] == "-R" and Args[4] == "-L":
+			
+			Lista = Args[5]
+			Pagina = Args[2]
+			Robot = True
+			return True
+			
+		elif Args[1] == "-P" and Args[3] == "-L" and Args[5] == "-R":
+			
+			Lista = Args[4]
+			Pagina = Args[2]
+			Robot = True
+			return True
+			
+		elif Args[1] == "-L" and Args[3] == "-R" and Args[4] == "-P":
+			
+			Lista = Args[2]
+			Pagina = Args[5]
+			Robot = True
+			return True
+			
+		elif Args[1] == "-L" and Args[3] == "-P" and Args[5] == "-R":
+			
+			Lista = Args[2]
+			Pagina = Args[4]
+			Robot = True
+			return True
+			
+		else: return False
+		
+	if len(Args) == 5:
+		
+		if Args[1] == "-P" and Args[3] == "-L":
+			
+			Lista = Args[4]
+			Pagina = Args[2]
+			return True
+		
+		elif Args[1] == "-L" and Args[3] == "-P":
+			
+			Lista = Args[2]
+			Pagina = Args[4]
+			return True
+			
+		else: return False
+		
+	if len(Args) == 4:
+		
+		if Args[1] == "-P" and Args[3] == "-R":
+			
+			Pagina = Args[2]
+			Robot = True
+			return True
+		
+		elif Args[1] == "-R" and Args[2] == "-P":
+			
+			Pagina = Args[3]
+			Robot = True
+			return True
+			
+		else: return False
+		
 	if len(Args) == 3:
 		
 		if Args[1] == "-P":
 			
 			Pagina = Args[2]
-			
 			return True
+			
+		elif Args[1] == "-L":
+			
+			Lista = Args[2]
+			return True
+			
+		else: return False
 		
 	elif len(Args) == 2:
 		
 		if Args[1] == "-R":
 			
 			Robot = True
-			
 			return True
+			
+		else: return False
 		
-	elif len(Args) == 1:
-		
-		return True
+	elif len(Args) == 1: return True
 	
 	else: return False
 
@@ -120,6 +203,7 @@ def Argumentos():
 
 Pagina = None
 Robot = None
+Lista = None
 
 Rutas = [
 'account.html', 'account.php', 'adm.html', 'adm.php', 'adm/', 'adm/admloginuser.php', 'adm/index.html', 'adm/index.php', 'adm_auth.php', 'admin',
@@ -144,8 +228,29 @@ if __name__ == "__main__":
 	
 	xD = Argumentos()
 	
+	if xD == False: sys.exit(1)
+	
 	os.system("Cls")
 	
+	if Lista != None:
+		
+		if os.path.exists(Lista):
+			
+			with open(Lista, "r") as Lis:
+				
+				Rutas = []
+				
+				print "\n\n [~] Cargando Rutas..."
+				
+				for x in Lis: Rutas.append(x.replace("\n",""))
+				
+				print "\n\n [~] " + str(len(Rutas)) + " Rutas Cargadas"
+		
+		else:
+			
+			print "\n\n\n\n\t [!] El Archivo " + Lista + " No Existe.\n\n"
+			sys.exit(0)
+		
 	if Pagina == None: Pagina = "http://" + raw_input("\n\n\n\t [~] URL: ").replace("https://","").replace("http://","").split("/")[0]
 	else:
 		
