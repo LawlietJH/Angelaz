@@ -7,7 +7,7 @@
 #       ██║  ██║██║ ╚████║╚██████╔╝███████╗███████╗██║  ██║███████╗
 #       ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝
 #                                                         By: LawlietJH
-#                                                               v1.0.7
+#                                                               v1.0.8
 # Python 2.7
 
 import threading
@@ -23,7 +23,7 @@ import os
 
 
 
-Version = "v.1.0.7"
+Version = "v.1.0.8"
 
 # Banners: http://patorjk.com/software/taag/
 
@@ -53,11 +53,6 @@ def Dat():
 	print("\n\n" + Banner)
 	print("\n\n" + Autor)
 	print("\n{:^80}".format(Version))
-	
-	#~ try:
-		#~ time.sleep(2)
-	#~ except:
-		#~ Dat()
 
 
 
@@ -238,6 +233,10 @@ def Robots(Pagina):
 				
 				return Cadena
 		
+		if http == 404 and not "www." in Pagina:
+			
+			return Robots(Pagina.replace("http://","http://www."))
+		
 		else: return "\n\n\t [-] Robots.txt No encontrado."
 		
 	except: return "\n\n\t [-] Robots.txt No encontrado."
@@ -252,7 +251,7 @@ def Escanear(Pagina, Ruta):
 		Req = requests.get(Ruta)
 		http = Req.status_code
 			
-		if http == 200:   print("\n ---> [+]  Admin Panel Encontrado: " + Ruta),					# 200 - OK.						Pagina Encontrada.
+		if http == 200:   print("\n ---> [+]  AP Encontrado: " + Ruta),					# 200 - OK.						Pagina Encontrada.
 		elif http == 301: print("\n [!] [301] Movido Permanentemente: " + Ruta),					# 301 - Moved Permanently.		Pagina Movida Permanentemente.
 		elif http == 302: print("\n ---> [+]  Vulnerabilidad Potencial [EAR] Encontrada: " + Ruta),	# 302 - Found.					Pagina Redireccionada.
 		elif http == 401: print("\n [!] [401] Acceso No Autorizado: " + Ruta),						# 401 - Unauthorized.			Pagina No Autorizada.
