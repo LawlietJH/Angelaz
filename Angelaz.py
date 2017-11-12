@@ -226,16 +226,14 @@ def Robots(Pagina):
 			else:
 				
 				Cadena += "\n\n\t [+] Robots.txt Encontrado."
-				Cadena += "\n\n\n\n [~] Contenido de Robots.txt:\n\n"
+				Cadena += "\n\n\n [~] Contenido de Robots.txt:\n\n"
 				Cadena += "================================================\n\n\n"
 				Cadena +=  Req.text + "\n\n"
 				Cadena += "================================================\n\n"
 				
 				return Cadena
 		
-		if http == 404 and not "www." in Pagina:
-			
-			return Robots(Pagina.replace("http://","http://www."))
+		elif http == 404 and not "www." in Pagina: return Robots(Pagina.replace("http://","http://www."))
 		
 		else: return "\n\n\t [-] Robots.txt No encontrado."
 		
@@ -251,14 +249,14 @@ def Escanear(Pagina, Ruta):
 		Req = requests.get(Ruta)
 		http = Req.status_code
 			
-		if http == 200:   print("\n ---> [+]  AP Encontrado: " + Ruta),					# 200 - OK.						Pagina Encontrada.
-		elif http == 301: print("\n [!] [301] Movido Permanentemente: " + Ruta),					# 301 - Moved Permanently.		Pagina Movida Permanentemente.
-		elif http == 302: print("\n ---> [+]  Vulnerabilidad Potencial [EAR] Encontrada: " + Ruta),	# 302 - Found.					Pagina Redireccionada.
-		elif http == 401: print("\n [!] [401] Acceso No Autorizado: " + Ruta),						# 401 - Unauthorized.			Pagina No Autorizada.
-		elif http == 403: print("\n [!] [403] Acceso Prohibido: " + Ruta),							# 403 - Forbidden.				Pagina Restringida.
-		elif http == 404: print("\n      [-]  " + Ruta),											# 404 - Not Found.				Pagina No Encontrada.
-		elif http == 410: print("\n [!] [410] Ya No Existe: " + Ruta),								# 410 - Gone.					Pagina Que Existia y No Volvera.
-		elif http == 500: print("\n [!] [500] Internal Server Error: " + Ruta),						# 500 - Internal Server Error.
+		if http == 200:   print("\n ---> [+]  Admin Panel Encontrado: " + Ruta),	# 200 - OK.						Pagina Encontrada.
+		elif http == 301: print("\n [!] [301] Movido Permanentemente: " + Ruta),	# 301 - Moved Permanently.		Pagina Movida Permanentemente.
+		elif http == 302: print("\n ---> [+]  Vulnerabilidad [EAR]: " + Ruta),		# 302 - Found.					Pagina Redireccionada.
+		elif http == 401: print("\n [!] [401] Acceso No Autorizado: " + Ruta),		# 401 - Unauthorized.			Pagina No Autorizada.
+		elif http == 403: print("\n [!] [403] Acceso Prohibido: " + Ruta),			# 403 - Forbidden.				Pagina Restringida.
+		elif http == 404: print("\n      [-]  " + Ruta),							# 404 - Not Found.				Pagina No Encontrada.
+		elif http == 410: print("\n [!] [410] Ya No Existe: " + Ruta),				# 410 - Gone.					Pagina Que Existia y No Volvera.
+		elif http == 500: print("\n [!] [500] Internal Server Error: " + Ruta),		# 500 - Internal Server Error.
 		else: print ("\n [!] [" + str(http) + "] " + Ruta),
 	
 	except KeyboardInterrupt: exit(1)
@@ -368,12 +366,24 @@ if __name__ == "__main__":
 			print("\n\t [!] El Archivo " + Lista + " No Existe.\n\n")
 			print("\n" + Modo_De_Uso)
 			sys.exit(0)
+	
+	Chk = Pagina
+	while True:
 		
-	if Pagina == None: Pagina = "http://" + raw_input("\n\n\n\t [~] URL: ").replace("https://","").replace("http://","").split("/")[0]
-	else:
-		
-		Pagina = "http://" + Pagina.replace("https://","").replace("http://","").split("/")[0]
-		print("\n\n\n [+] URL: " + Pagina)
+		if Chk == None: Pagina = "http://" + raw_input("\n\n\n\t [~] URL: ").replace("https://","").replace("http://","").split("/")[0]
+		else:
+			Pagina = "http://" + Pagina.replace("https://","").replace("http://","").split("/")[0]
+			print("\n\n\n [+] URL: " + Pagina)
+			
+		try: requests.get(Pagina)
+		except requests.exceptions.ConnectionError:
+			print(u"\n\n [!] Error De Conexión Con La Página:\n\n\n\t" + Pagina)
+			print(u"\n\n [!] La Página No Existe    o    No Tienes Conexión A Internet.")
+			time.sleep(4)
+			os.system("Cls")
+			continue
+			
+		break
 	
 	if Robot == None or Robot == False:
 		
