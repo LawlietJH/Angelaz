@@ -8,7 +8,7 @@
 #       ██║  ██║██║ ╚████║╚██████╔╝███████╗███████╗██║  ██║███████╗
 #       ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝
 #                                                         By: LawlietJH
-#                                                               v1.1.2
+#                                                               v1.1.3
 
 import threading
 import time
@@ -23,7 +23,7 @@ import os
 
 
 
-Version = "v.1.1.2"
+Version = "v.1.1.3"
 
 # Banners: http://patorjk.com/software/taag/
 
@@ -80,7 +80,7 @@ except:
 
 def Argumentos():
 	
-	global Pagina, Robot, Lista, FullScan
+	global Pagina, Robot, Lista, FullScan, TipoRuta
 	
 	Args = sys.argv
 	
@@ -95,7 +95,7 @@ def Argumentos():
 			Robot = True
 			return True
 			
-		elif (Args[1].lower() == "-r" or  Args[1].lower() == "--robots")
+		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots")\
 		 and (Args[2].lower() == "-l" or Args[2].lower() == "--lista")\
 		 and (Args[4].lower() == "-p" or Args[4].lower() == "--pagina"):
 			
@@ -280,6 +280,22 @@ def Argumentos():
 			Robot = False
 			return True
 			
+		elif (Args[1].lower() == "-t" or Args[1].lower() == "--tipo"):
+			
+			TipoRuta = Args[2].replace('"',"")
+				
+			if  TipoRuta.lower() == "php"\
+			 or TipoRuta.lower() == "asp"\
+			 or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"  or TipoRuta.lower() == "php html"\
+			 or TipoRuta.lower() == "asp php"  or TipoRuta.lower() == "asp html"\
+			 or TipoRuta.lower() == "html php" or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
+			 or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php"\
+			 or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php":
+				  return True
+			else: return False
+			
 		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots")\
 		 and (Args[2].lower() == "-c" or Args[2].lower() == "--completo"):
 			
@@ -390,6 +406,48 @@ def Escanear(Pagina, Ruta):
 
 
 
+def Filtrar(Ruta):
+	
+	if TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
+	or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php"\
+	or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php":
+			
+			return True
+	
+	elif TipoRuta.lower() == "php asp" or TipoRuta.lower() == "asp php":
+		if not Ruta.lower().endswith(".html"):
+			
+			return True
+	
+	elif TipoRuta.lower() == "asp html" or TipoRuta.lower() == "html asp":
+		if not Ruta.lower().endswith(".php") and not Ruta.lower().endswith(".html"):
+			
+			return True
+	
+	elif TipoRuta.lower() == "html php" or TipoRuta.lower() == "php html":
+		if not Ruta.lower().endswith(".asp"):
+			
+			return True
+	
+	elif TipoRuta.lower() == "php":
+		if not Ruta.lower().endswith(".asp") and not Ruta.lower().endswith(".html"):
+			
+			return True
+	
+	elif TipoRuta.lower() == "asp":
+		if not Ruta.lower().endswith(".php") and not Ruta.lower().endswith(".html"):
+			
+			return True
+	
+	elif TipoRuta.lower() == "html":
+		if not Ruta.lower().endswith(".php") and not Ruta.lower().endswith(".asp"):
+			
+			return True
+	
+	else: return False
+
+
+
 #========================================================================
 #========================================================================
 #========================================================================
@@ -400,7 +458,7 @@ Pagina = None
 Robot = None
 Lista = None
 FullScan = None
-TipoRuta = None
+TipoRuta = "Sin Filtros"
 EscaneoTipo = ""
 Rutas = []
 
@@ -564,37 +622,25 @@ if __name__ == "__main__":
 	if   FullScan == True: EscaneoTipo = "Escaneo Completo Con " + str(len(RutasFull)) + " Rutas."; Rutas = RutasFull
 	elif FullScan == False or FullScan == None: EscaneoTipo = u"Escaneo Rápido Con " + str(len(RutasFast)) + " Rutas."; Rutas = RutasFast
 	
-	print("\n\n\n [+] Buscando Admin Panels... " + EscaneoTipo + "\n\n")
+	print("\n\n\n [+] " + EscaneoTipo + "\n [+] Filtrado Por: " + TipoRuta + ".\n\n [+] Buscando Admin Panels...")
 	
 	for Ruta in Rutas:
 		
 		if TipoRuta != None:
-		
-			if TipoRuta.lower() == "php":
-				if not Ruta.lower().endswith(".asp") and not Ruta.lower().endswith(".html"):
-					
-					time.sleep(.01)
-					if Ruta.startswith("/"): threading.Thread(target=Escanear, args=(Pagina, Ruta, )).start()
-					else: threading.Thread(target=Escanear, args=(Pagina, "/" + Ruta, )).start()
 			
-			elif TipoRuta.lower() == "asp":
-				if not Ruta.lower().endswith(".php") and not Ruta.lower().endswith(".html"):
-					
-					time.sleep(.01)
-					if Ruta.startswith("/"): threading.Thread(target=Escanear, args=(Pagina, Ruta, )).start()
-					else: threading.Thread(target=Escanear, args=(Pagina, "/" + Ruta, )).start()
+			if Filtrar(Ruta):
+				
+				time.sleep(.01)
+				if Ruta.startswith("/"): threading.Thread(target=Escanear, args=(Pagina, Ruta, )).start()
+				else: threading.Thread(target=Escanear, args=(Pagina, "/" + Ruta, )).start()
 			
-			elif TipoRuta.lower() == "html":
-				if not Ruta.lower().endswith(".php") and not Ruta.lower().endswith(".asp"):
-					
-					time.sleep(.01)
-					if Ruta.startswith("/"): threading.Thread(target=Escanear, args=(Pagina, Ruta, )).start()
-					else: threading.Thread(target=Escanear, args=(Pagina, "/" + Ruta, )).start()
 			else:
+				
 				os.system("Cls")
 				Dat()
 				print("\n" + Modo_De_Uso)
-				
+				sys.exit(1)
+		
 		elif TipoRuta == None:
 			
 			time.sleep(.01)
