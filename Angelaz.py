@@ -60,7 +60,7 @@ try:
 except:
 	Dat()
 	if PythonVer == "2": print("\n\n\t [+] Instalando Dependencias... Requests "),
-	if PythonVer == "3": print("\n\n\t [+] Instalando Dependencias... Requests ", end="")
+	if PythonVer == "3": print("\n\n\t [+] Instalando Dependencias... Requests ",)
 	os.system("python -m pip install requests > Nul")
 	try:
 		import requests
@@ -1667,41 +1667,41 @@ def Escanear(Pagina, Ruta):
 			
 		if http == 200:
 			if   PythonVer == "2": print("\n ---> [+]  Admin Panel Encontrado: " + Ruta),		# 200 - OK.						Pagina Encontrada.
-			elif PythonVer == "3": print("\n ---> [+]  Admin Panel Encontrado: " + Ruta, end="")
+			elif PythonVer == "3": print(" ---> [+]  Admin Panel Encontrado: " + Ruta)
 		elif http == 301:
 			if   PythonVer == "2": print("\n [!] [301] Movido Permanentemente: " + Ruta),		# 301 - Moved Permanently.		Pagina Movida Permanentemente.
-			elif PythonVer == "3": print("\n [!] [301] Movido Permanentemente: " + Ruta, end="")
+			elif PythonVer == "3": print(" [!] [301] Movido Permanentemente: " + Ruta)
 		elif http == 302:
 			if   PythonVer == "2": print("\n ---> [+]  Vulnerabilidad [EAR]: " + Ruta),			# 302 - Found.					Pagina Redireccionada.
-			elif PythonVer == "3": print("\n ---> [+]  Vulnerabilidad [EAR]: " + Ruta, end="")
+			elif PythonVer == "3": print(" ---> [+]  Vulnerabilidad [EAR]: " + Ruta)
 		elif http == 401:
 			if   PythonVer == "2": print("\n [!] [401] Acceso No Autorizado: " + Ruta),			# 401 - Unauthorized.			Pagina No Autorizada.
-			elif PythonVer == "3": print("\n [!] [401] Acceso No Autorizado: " + Ruta, end="")
+			elif PythonVer == "3": print(" [!] [401] Acceso No Autorizado: " + Ruta)
 		elif http == 403:
 			if   PythonVer == "2": print("\n [!] [403] Acceso Prohibido: " + Ruta),				# 403 - Forbidden.				Pagina Restringida.
-			elif PythonVer == "3": print("\n [!] [403] Acceso Prohibido: " + Ruta, end="")
+			elif PythonVer == "3": print(" [!] [403] Acceso Prohibido: " + Ruta)
 		elif http == 404:
 			if   PythonVer == "2": print("\n      [-]  " + Ruta),								# 404 - Not Found.				Pagina No Encontrada.
-			elif PythonVer == "3": print("\n      [-]  " + Ruta, end="")
+			elif PythonVer == "3": print("      [-]  " + Ruta)
 		elif http == 410:
 			if   PythonVer == "2": print("\n [!] [410] Ya No Existe: " + Ruta),					# 410 - Gone.					Pagina Que Existia y No Volvera.
-			elif PythonVer == "3": print("\n [!] [410] Ya No Existe: " + Ruta, end="")
+			elif PythonVer == "3": print(" [!] [410] Ya No Existe: " + Ruta)
 		elif http == 500:
 			if   PythonVer == "2": print("\n [!] [500] Internal Server Error: " + Ruta),			# 500 - Internal Server Error.
-			elif PythonVer == "3": print("\n [!] [500] Internal Server Error: " + Ruta, end="")
+			elif PythonVer == "3": print(" [!] [500] Internal Server Error: " + Ruta)
 		else:
 			if   PythonVer == "2": print ("\n [!] [" + str(http) + "] " + Ruta),
-			elif PythonVer == "3": print ("\n [!] [" + str(http) + "] " + Ruta, end="")
+			elif PythonVer == "3": print (" [!] [" + str(http) + "] " + Ruta)
 	
 	except KeyboardInterrupt: exit(1)
 	except Exception as e:
 		
 		if str(type(e).__name__) == "ConnectionError":
 			if   PythonVer == "2": print("\n   X  [!]  " + Ruta + u" <--- Error De Conección."),
-			elif PythonVer == "3": print("\n   X  [!]  " + Ruta + u" <--- Error De Conección.", end="")
+			elif PythonVer == "3": print("   X  [!]  " + Ruta + u" <--- Error De Conección.")
 		else:
 			if   PythonVer == "2": print("\n   X  [!]  " + Ruta + " <--- " + str(type(e).__name__)),
-			elif PythonVer == "3": print("\n   X  [!]  " + Ruta + " <--- " + str(type(e).__name__), end="")
+			elif PythonVer == "3": print("   X  [!]  " + Ruta + " <--- " + str(type(e).__name__))
 
 
 
