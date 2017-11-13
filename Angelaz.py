@@ -8,7 +8,7 @@
 #       ██║  ██║██║ ╚████║╚██████╔╝███████╗███████╗██║  ██║███████╗
 #       ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝
 #                                                         By: LawlietJH
-#                                                               v1.1.1
+#                                                               v1.1.2
 
 import threading
 import time
@@ -23,7 +23,7 @@ import os
 
 
 
-Version = "v.1.1.1"
+Version = "v.1.1.2"
 
 # Banners: http://patorjk.com/software/taag/
 
@@ -36,7 +36,7 @@ Banner = u"""
           ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝"""
 # Fuente: ANSI Shadow - http://patorjk.com/software/taag/#p=display&f=ANSI%20Shadow&t=Angelaz
 
-Autor = u"""
+Autor = u"""\
                             ╦  ┌─┐┬ ┬┬  ┬┌─┐┌┬┐╦╦ ╦
                             ║  ├─┤││││  │├┤  │ ║╠═╣
                             ╩═╝┴ ┴└┴┘┴─┘┴└─┘ ┴╚╝╩ ╩
@@ -86,33 +86,35 @@ def Argumentos():
 	
 	if len(Args) == 6:
 		
-		if  (Args[1].lower() == "-r" or  Args[1].lower() == "--robots")\
-		 and Args[2].lower() == "-p" and Args[4].lower() == "-l":
+		if   (Args[1].lower() == "-r" or Args[1].lower() == "--robots")\
+		 and (Args[2].lower() == "-p" or Args[2].lower() == "--pagina")\
+		 and (Args[4].lower() == "-l" or Args[4].lower() == "--lista"):
 			
 			Lista = Args[5]
 			Pagina = Args[3]
 			Robot = True
 			return True
 			
-		elif (Args[1].lower() == "-r" or  Args[1].lower() == "--robots")\
-		 and  Args[2].lower() == "-l" and Args[4].lower() == "-p":
+		elif (Args[1].lower() == "-r" or  Args[1].lower() == "--robots")
+		 and (Args[2].lower() == "-l" or Args[2].lower() == "--lista")\
+		 and (Args[4].lower() == "-p" or Args[4].lower() == "--pagina"):
 			
 			Lista = Args[3]
 			Pagina = Args[5]
 			Robot = True
 			return True
 			
-		elif  Args[1].lower() == "-p"\
+		elif (Args[1].lower() == "-p" or Args[1].lower() == "--pagina")\
 		 and (Args[3].lower() == "-r" or Args[3].lower() == "--robots")\
-		 and  Args[4].lower() == "-l":
+		 and (Args[4].lower() == "-l" or Args[4].lower() == "--lista"):
 			
 			Lista = Args[5]
 			Pagina = Args[2]
 			Robot = True
 			return True
 			
-		elif Args[1].lower() == "-p"\
-		 and Args[3].lower() == "-l"\
+		elif (Args[1].lower() == "-p" or Args[1].lower() == "--pagina")\
+		 and (Args[3].lower() == "-l" or Args[3].lower() == "--lista")\
 		 and (Args[5].lower() == "-r" or Args[5].lower() == "--robots"):
 			
 			Lista = Args[4]
@@ -120,17 +122,17 @@ def Argumentos():
 			Robot = True
 			return True
 			
-		elif  Args[1].lower() == "-l"\
+		elif (Args[1].lower() == "-l" or Args[1].lower() == "--lista")\
 		 and (Args[3].lower() == "-r" or Args[3].lower() == "--robots")\
-		 and  Args[4].lower() == "-l":
+		 and (Args[4].lower() == "-p" or Args[4].lower() == "--pagina"):
 			
 			Lista = Args[2]
 			Pagina = Args[5]
 			Robot = True
 			return True
 			
-		elif  Args[1].lower() == "-l"\
-		 and  Args[3].lower() == "-p"\
+		elif (Args[1].lower() == "-l" or Args[1].lower() == "--lista")\
+		 and (Args[3].lower() == "-p" or Args[3].lower() == "--pagina")\
 		 and (Args[5].lower() == "-r" or Args[5].lower() == "--robots"):
 			
 			Lista = Args[2]
@@ -142,21 +144,23 @@ def Argumentos():
 		
 	elif len(Args) == 5:
 		
-		if Args[1].lower() == "-p" and Args[3].lower() == "-l":
+		if   (Args[1].lower() == "-p" or Args[1].lower() == "--pagina")\
+		 and (Args[3].lower() == "-l" or Args[3].lower() == "--lista"):
 			
 			Lista = Args[4]
 			Pagina = Args[2]
 			Robot = False
 			return True
 		
-		elif Args[1].lower() == "-l" and Args[3].lower() == "-p":
+		elif (Args[1].lower() == "-l" or Args[1].lower() == "--lista")\
+		 and (Args[3].lower() == "-p" or Args[3].lower() == "--pagina"):
 			
 			Lista = Args[2]
 			Pagina = Args[4]
 			Robot = False
 			return True
 		
-		elif  Args[1].lower() == "-p"\
+		elif (Args[1].lower() == "-p" or Args[1].lower() == "--pagina")\
 		 and (Args[3].lower() == "-r" or Args[3].lower() == "--robots")\
 		 and (Args[4].lower() == "-c" or Args[4].lower() == "--completo"):
 			
@@ -165,7 +169,7 @@ def Argumentos():
 			Robot = True
 			return True
 			
-		elif  Args[1].lower() == "-p"\
+		elif (Args[1].lower() == "-p" or Args[1].lower() == "--pagina")\
 		 and (Args[3].lower() == "-c" or Args[3].lower() == "--completo")\
 		 and (Args[4].lower() == "-r" or Args[4].lower() == "--robots"):
 			
@@ -175,7 +179,7 @@ def Argumentos():
 			return True
 			
 		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots")\
-		 and  Args[2].lower() == "-p"\
+		 and (Args[2].lower() == "-p" or Args[2].lower() == "--pagina")\
 		 and (Args[4].lower() == "-c" or Args[4].lower() == "--completo"):
 			
 			Pagina = Args[3]
@@ -184,7 +188,7 @@ def Argumentos():
 			return True
 			
 		elif (Args[1].lower() == "-c" or Args[1].lower() == "--completo")\
-		 and  Args[2].lower() == "-p"\
+		 and (Args[2].lower() == "-p" or Args[2].lower() == "--pagina")\
 		 and (Args[4].lower() == "-r" or Args[4].lower() == "--robots"):
 			
 			Pagina = Args[3]
@@ -193,8 +197,8 @@ def Argumentos():
 			return True
 			
 		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots")\
-		 and (Args[4].lower() == "-c" or Args[4].lower() == "--completo")\
-		 and  Args[3].lower() == "-p":
+		 and (Args[2].lower() == "-c" or Args[2].lower() == "--completo")\
+		 and (Args[3].lower() == "-p" or Args[3].lower() == "--pagina"):
 			
 			Pagina = Args[4]
 			FullScan = True
@@ -214,41 +218,47 @@ def Argumentos():
 		
 	elif len(Args) == 4:
 		
-		if Args[1].lower() == "-p" and (Args[3].lower() == "-r" or Args[3].lower() == "--robots"):
+		if   (Args[1].lower() == "-p" or Args[1].lower() == "--pagina")\
+		 and (Args[3].lower() == "-r" or Args[3].lower() == "--robots"):
 			
 			Pagina = Args[2]
 			FullScan = False
 			Robot = True
 			return True
 		
-		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots") and Args[2].lower() == "-p":
+		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots")\
+		 and (Args[2].lower() == "-p" or Args[2].lower() == "--pagina"):
 			
 			Pagina = Args[3]
 			FullScan = False
 			Robot = True
 			return True
 			
-		elif Args[1].lower() == "-p" and (Args[3].lower() == "-c" or Args[3].lower() == "--completo"):
+		elif (Args[1].lower() == "-p" or Args[1].lower() == "--pagina")\
+		 and (Args[3].lower() == "-c" or Args[3].lower() == "--completo"):
 			
 			Pagina = Args[2]
 			FullScan = True
 			Robot = False
 			return True
 		
-		elif (Args[1].lower() == "-c" or Args[1].lower() == "--completo") and Args[2].lower() == "-p":
+		elif (Args[1].lower() == "-c" or Args[1].lower() == "--completo")\
+		 and (Args[2].lower() == "-p" or Args[2].lower() == "--pagina"):
 			
 			Pagina = Args[3]
 			FullScan = True
 			Robot = False
 			return True
 			
-		elif Args[1].lower() == "-l" and (Args[3].lower() == "-r" or Args[3].lower() == "--robots"):
+		elif (Args[1].lower() == "-l" or Args[1].lower() == "--lista")\
+		 and (Args[3].lower() == "-r" or Args[3].lower() == "--robots"):
 			
 			Lista = Args[2]
 			Robot = True
 			return True
 		
-		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots") and Args[2].lower() == "-l":
+		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots")\
+		 and (Args[2].lower() == "-l" or Args[2].lower() == "--lista"):
 			
 			Lista = Args[3]
 			Robot = True
@@ -258,13 +268,13 @@ def Argumentos():
 		
 	elif len(Args) == 3:
 		
-		if Args[1] == "-P":
+		if (Args[1].lower() == "-p" or Args[1].lower() == "--pagina"):
 			
 			Pagina = Args[2]
 			Robot = False
 			return True
 			
-		elif Args[1] == "-L":
+		elif (Args[1].lower() == "-l" or Args[1].lower() == "--lista"):
 			
 			Lista = Args[2]
 			Robot = False
@@ -435,36 +445,40 @@ RutasFull = [
 ]
 
 Modo_De_Uso = u"""\
- [+] Modo De Uso:\n\n\n Angelaz.py [-P Pagina.com][-R] ([-L Rutas.txt] | [-C]) | [-h]
+ [+] Modo De Uso:
+  
+  Angelaz.py [-P Pagina.com][-R] ([-L Rutas.txt] | [-C]) | [-h]
   
   
-  -h, --help            Muestra este Mensaje y Sale del Script.
+  -h, --help                Muestra Este Mensaje y Sale del Script.
   
-  -P  PAGINA.COM        Página a Escanear.
+  -P, --Pagina PAGINA.COM   Página A Escanear.
   
-  -L  LISTA.TXT         Archivo con la Lista de Rutas.txt.
+  -L, --Lista LISTA.TXT     Archivo Con La Lista de Rutas.txt.
   
-  -R, --Robots          Indica Si Se Desea Buscar El Archivo Robots.txt.
+  -R, --Robots              Indica Si Se Desea Buscar El Archivo Robots.txt.
   
-  -C, --Completo        Indica Hacer Un Escaneo Completo Con 483 Rutas.
+  -C, --Completo            Indica Hacer Un Escaneo Completo Con 483 Rutas.
+  
+  -T, --Tipo PHP,ASP,HTML   Filtra Por Tipo Las Rutas Que Se Usarán.
   
   
  [+] Ejemplos:
   
- > Angelaz.py                       Corre El Script y Pide La Información
-                                    Necesaria De Forma Interna.
+  > Angelaz.py                       Corre El Script y Pide La Información
+                                     Necesaria De Forma Interna.
                                     
- > Angelaz.py -h                    Muestra El Modo De Uso.
+  > Angelaz.py -h                    Muestra El Modo De Uso.
  
- > Angelaz.py -P Pagina.com         Realiza Escaneo a La Página Usando Las
-                                    Rutas Una Lista Interna Con 140 Rutas.
+  > Angelaz.py -P Pagina.com         Realiza Escaneo a La Página Usando Las
+                                     Rutas Una Lista Interna Con 140 Rutas.
                                          
- > Angelaz.py -P xD.com -L Rutas.txt -R  Realiza Escaneo a La Página Usando
-                                         Las Rutas Del Archivo Rutas.txt y
-                                         Busca El Archivo Robots.txt.
+  > Angelaz.py -P xD.com -L Rutas.txt -R  Realiza Escaneo a La Página Usando
+                                          Las Rutas Del Archivo Rutas.txt y
+                                          Busca El Archivo Robots.txt.
                                          
- > Angelaz.py -P xD.com -R -C       Agregar -C Hace Un Escaneo Completo Con
-                                    483 Rutas. No Puedes Combinar -C y -L.
+  > Angelaz.py -P xD.com -R -C       Agregar -C Hace Un Escaneo Completo Con
+                                     483 Rutas. No Puedes Combinar -C y -L.
 """
 
 
