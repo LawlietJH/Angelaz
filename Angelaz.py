@@ -8,7 +8,7 @@
 #       ██║  ██║██║ ╚████║╚██████╔╝███████╗███████╗██║  ██║███████╗
 #       ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝
 #                                                         By: LawlietJH
-#                                                               v1.1.4
+#                                                               v1.1.5
 
 import threading
 import time
@@ -23,7 +23,7 @@ import os
 
 
 
-Version = "v.1.1.4"
+Version = "v.1.1.5"
 
 # Banners: http://patorjk.com/software/taag/
 
@@ -263,6 +263,88 @@ def Argumentos():
 			Lista = Args[3]
 			Robot = True
 			return True
+		
+		elif (Args[1].lower() == "-t" or Args[1].lower() == "--tipo")\
+		 and (Args[3].lower() == "-r" or Args[3].lower() == "--robots"):
+			
+			TipoRuta = Args[2].replace('"',"")
+				
+			if  TipoRuta.lower() == "php"\
+			 or TipoRuta.lower() == "asp"\
+			 or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"  or TipoRuta.lower() == "php html"\
+			 or TipoRuta.lower() == "asp php"  or TipoRuta.lower() == "asp html"\
+			 or TipoRuta.lower() == "html php" or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
+			 or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php"\
+			 or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php":
+				  
+				Robot = True
+				return True
+			
+			else: return False
+			
+		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots")\
+		 and (Args[2].lower() == "-t" or Args[2].lower() == "--tipo"):
+			
+			TipoRuta = Args[3].replace('"',"")
+				
+			if  TipoRuta.lower() == "php"\
+			 or TipoRuta.lower() == "asp"\
+			 or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"  or TipoRuta.lower() == "php html"\
+			 or TipoRuta.lower() == "asp php"  or TipoRuta.lower() == "asp html"\
+			 or TipoRuta.lower() == "html php" or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
+			 or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php"\
+			 or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php":
+				  
+				Robot = True
+				return True
+			
+			else: return False
+			
+		elif (Args[1].lower() == "-t" or Args[1].lower() == "--tipo")\
+		 and (Args[3].lower() == "-c" or Args[3].lower() == "--completo"):
+			
+			TipoRuta = Args[2].replace('"',"")
+				
+			if  TipoRuta.lower() == "php"\
+			 or TipoRuta.lower() == "asp"\
+			 or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"  or TipoRuta.lower() == "php html"\
+			 or TipoRuta.lower() == "asp php"  or TipoRuta.lower() == "asp html"\
+			 or TipoRuta.lower() == "html php" or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
+			 or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php"\
+			 or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php":
+				  
+				FullScan = True
+				Robot = False
+				return True
+			
+			else: return False
+			
+		elif (Args[1].lower() == "-c" or Args[1].lower() == "--completo")\
+		 and (Args[2].lower() == "-t" or Args[2].lower() == "--tipo"):
+			
+			TipoRuta = Args[3].replace('"',"")
+				
+			if  TipoRuta.lower() == "php"\
+			 or TipoRuta.lower() == "asp"\
+			 or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"  or TipoRuta.lower() == "php html"\
+			 or TipoRuta.lower() == "asp php"  or TipoRuta.lower() == "asp html"\
+			 or TipoRuta.lower() == "html php" or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
+			 or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php"\
+			 or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php":
+				  
+				FullScan = True
+				Robot = False
+				return True
+			
+			else: return False
 			
 		else: return False
 		
@@ -531,10 +613,9 @@ RutasFull = [
 ]
 
 Modo_De_Uso = u"""\
- [+] Modo De Uso:
+ [+] Modo De Uso: ============================================================
   
-  Angelaz.py [-P Pagina.com][-R] ([-L Rutas.txt] | [-C]) | [-h]
-  
+  Angelaz.py [-P Pagina.com][-R] {[-L Rutas.txt] | [-C]} | [-h]
   
   -h, --help                Muestra Este Mensaje y Sale del Script.
   
@@ -548,23 +629,26 @@ Modo_De_Uso = u"""\
   
   -T, --Tipo PHP,ASP,HTML   Filtra Por Tipo Las Rutas Que Se Usarán.
   
+ [+] Ejemplos: ===============================================================
   
- [+] Ejemplos:
-  
-  > Angelaz.py                       Corre El Script y Pide La Información
-                                     Necesaria De Forma Interna.
-                                    
-  > Angelaz.py -h                    Muestra El Modo De Uso.
- 
-  > Angelaz.py -P Pagina.com         Realiza Escaneo a La Página Usando Las
-                                     Rutas Una Lista Interna Con 140 Rutas.
-                                         
-  > Angelaz.py -P xD.com -L Rutas.txt -R  Realiza Escaneo a La Página Usando
-                                          Las Rutas Del Archivo Rutas.txt y
-                                          Busca El Archivo Robots.txt.
-                                         
-  > Angelaz.py -P xD.com -R -C       Agregar -C Hace Un Escaneo Completo Con
-                                     483 Rutas. No Puedes Combinar -C y -L.
+  > Angelaz.py                    [*] Corre El Script y Pide La Información
+                                      Necesaria De Forma Interna.
+  > Angelaz.py -h                 [*] Muestra El Modo De Uso.
+  > Angelaz.py -P Pagina.com      [*] Realiza Escaneo a La Página Usando Las
+                                      Rutas Una Lista Interna Con 140 Rutas.
+  > Angelaz.py -P xD.com -L Rutas.txt -R    [*] Realiza Escaneo a La Página
+                                                Usando Las Rutas Del Archivo
+                                                Rutas.txt y Busca El Archivo
+                                                Robots.txt.
+  > Angelaz.py -P xD.com -R -C    [*] Agregar -C Hace Un Escaneo Completo Con
+                                      483 Rutas. No Puedes Combinar -C y -L.
+  > Angelaz.py -T PHP             [*] Filtrará Las Rutas Para Mostrar Solo PHP
+                                      y Agregando Las Que No Tienen Extensión.
+  > Angelaz.py -T "ASP HTML"      [*] Filtrará Las Rutas De Archivos Mostrando
+                                      Con Extensión ASP y HTML solamente y
+                                      Agregando Las Que No Tienen Extensión.
+                                      
+ =============================================================================
 """
 
 
