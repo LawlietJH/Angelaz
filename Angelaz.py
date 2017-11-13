@@ -1809,7 +1809,7 @@ RutasFull = [
 Modo_De_Uso = u"""\
  [+] Modo De Uso: ============================================================
   
-  Angelaz.py [-P Pagina.com][-R] {[-L Rutas.txt] | [-C]} | [-h]
+  Angelaz.py [-P Pagina.com][-R][-T TIPO] {[-L Rutas.txt] | [-C]} | [-h]
   
   -h, --help                Muestra Este Mensaje y Sale del Script.
   
