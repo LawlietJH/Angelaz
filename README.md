@@ -1,7 +1,7 @@
 # Angelaz
 ## Escáner de Admin Panels de Páginas Web y Extracción De Robots.txt Con Python
-### Versión: 1.2.0
-### Python 2.7
+### Versión: 1.2.2
+### Python 2 y 3
 ### Windows.
 
 - - -
@@ -17,7 +17,7 @@
    + **Soporta Busqueda De Rutas Con Extensiones PHP, ASP y HTML.**
    + **Filtro De Rutas PHP, ASP y HTML. Se Pueden Combinar.**
    + **Busca Posibles Vulnerabilidades de EAR.**
-   + **Busca y Extrae Archivos Robots.txt.**
+   + **Busca, Extrae y Guarda El Archivo Robots.txt De La Página Solicitada.**
    + **Soporta Agregar Rutas Desde Una Lista Propia De Usuario.**
 
 - - -
