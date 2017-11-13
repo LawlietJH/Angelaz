@@ -8,7 +8,7 @@
 #       ██║  ██║██║ ╚████║╚██████╔╝███████╗███████╗██║  ██║███████╗
 #       ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝
 #                                                         By: LawlietJH
-#                                                               v1.1.5
+#                                                               v1.1.6
 
 import threading
 import time
@@ -23,7 +23,7 @@ import os
 
 
 
-Version = "v.1.1.5"
+Version = "v.1.1.6"
 
 # Banners: http://patorjk.com/software/taag/
 
@@ -213,6 +213,138 @@ def Argumentos():
 			FullScan = True
 			Robot = True
 			return True
+			
+		elif (Args[1].lower() == "-t" or Args[1].lower() == "--tipo")\
+		 and (Args[3].lower() == "-r" or Args[3].lower() == "--robots")\
+		 and (Args[4].lower() == "-c" or Args[4].lower() == "--completo"):
+			
+			TipoRuta = Args[2].replace('"',"")
+				
+			if  TipoRuta.lower() == "php"\
+			 or TipoRuta.lower() == "asp"\
+			 or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"  or TipoRuta.lower() == "php html"\
+			 or TipoRuta.lower() == "asp php"  or TipoRuta.lower() == "asp html"\
+			 or TipoRuta.lower() == "html php" or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
+			 or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php"\
+			 or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php":
+				  
+				FullScan = True
+				Robot = True
+				return True
+			
+			else: return False
+			
+		elif (Args[1].lower() == "-t" or Args[1].lower() == "--tipo")\
+		 and (Args[3].lower() == "-c" or Args[3].lower() == "--completo")\
+		 and (Args[4].lower() == "-r" or Args[4].lower() == "--robots"):
+			
+			TipoRuta = Args[2].replace('"',"")
+				
+			if  TipoRuta.lower() == "php"\
+			 or TipoRuta.lower() == "asp"\
+			 or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"  or TipoRuta.lower() == "php html"\
+			 or TipoRuta.lower() == "asp php"  or TipoRuta.lower() == "asp html"\
+			 or TipoRuta.lower() == "html php" or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
+			 or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php"\
+			 or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php":
+				  
+				FullScan = True
+				Robot = True
+				return True
+			
+			else: return False
+			
+		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots")\
+		 and (Args[2].lower() == "-t" or Args[2].lower() == "--tipo")\
+		 and (Args[4].lower() == "-c" or Args[4].lower() == "--completo"):
+			
+			TipoRuta = Args[3].replace('"',"")
+				
+			if  TipoRuta.lower() == "php"\
+			 or TipoRuta.lower() == "asp"\
+			 or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"  or TipoRuta.lower() == "php html"\
+			 or TipoRuta.lower() == "asp php"  or TipoRuta.lower() == "asp html"\
+			 or TipoRuta.lower() == "html php" or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
+			 or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php"\
+			 or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php":
+				  
+				FullScan = True
+				Robot = True
+				return True
+			
+			else: return False
+			
+		elif (Args[1].lower() == "-c" or Args[1].lower() == "--completo")\
+		 and (Args[2].lower() == "-t" or Args[2].lower() == "--tipo")\
+		 and (Args[4].lower() == "-r" or Args[4].lower() == "--robots"):
+			
+			TipoRuta = Args[3].replace('"',"")
+				
+			if  TipoRuta.lower() == "php"\
+			 or TipoRuta.lower() == "asp"\
+			 or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"  or TipoRuta.lower() == "php html"\
+			 or TipoRuta.lower() == "asp php"  or TipoRuta.lower() == "asp html"\
+			 or TipoRuta.lower() == "html php" or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
+			 or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php"\
+			 or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php":
+				  
+				FullScan = True
+				Robot = True
+				return True
+			
+			else: return False
+			
+		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots")\
+		 and (Args[2].lower() == "-c" or Args[2].lower() == "--completo")\
+		 and (Args[3].lower() == "-t" or Args[3].lower() == "--tipo"):
+			
+			TipoRuta = Args[4].replace('"',"")
+				
+			if  TipoRuta.lower() == "php"\
+			 or TipoRuta.lower() == "asp"\
+			 or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"  or TipoRuta.lower() == "php html"\
+			 or TipoRuta.lower() == "asp php"  or TipoRuta.lower() == "asp html"\
+			 or TipoRuta.lower() == "html php" or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
+			 or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php"\
+			 or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php":
+				  
+				FullScan = True
+				Robot = True
+				return True
+			
+			else: return False
+			
+		elif (Args[1].lower() == "-c" or Args[1].lower() == "--completo")\
+		 and (Args[2].lower() == "-r" or Args[2].lower() == "--robots")\
+		 and (Args[3].lower() == "-t" or Args[3].lower() == "--tipo"):
+			
+			TipoRuta = Args[4].replace('"',"")
+				
+			if  TipoRuta.lower() == "php"\
+			 or TipoRuta.lower() == "asp"\
+			 or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"  or TipoRuta.lower() == "php html"\
+			 or TipoRuta.lower() == "asp php"  or TipoRuta.lower() == "asp html"\
+			 or TipoRuta.lower() == "html php" or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
+			 or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php"\
+			 or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php":
+				  
+				FullScan = True
+				Robot = True
+				return True
+			
+			else: return False
 			
 		else: return False
 		
