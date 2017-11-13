@@ -1,7 +1,25 @@
 # Angelaz
 ## Escáner de Admin Panels de Páginas Web y Extracción De Robots.txt Con Python
 ### Versión: 1.1.0
+### Python 2.7
+
 - - -
+
+### Caracteristicas: Busca Login de Admin (Admin Panels) y Vulnerabilidades EAR.
+
+   + **Tiene Multiprocesamiento Usando Hilos de Ejecución (Threads).**
+   + **2 Grandes Listas de Rutas Internas.**
+   
+        + **140 Rutas: *Para Escaneo Por Defecto.***
+        + **483 Rutas: *Para Escaneo Completo.***
+        
+   + **Soporta Extensiones PHP, ASP y HTML.**
+   + **Busca posibles vulnerabilidades de EAR.**
+   + **Busca y Extrae Archivos Robots.txt.**
+   + **Soporta Listas De Rutas Propias.**
+
+- - -
+
 ### Modo De Uso: 
     
         Angelaz.py [-P Pagina.com][-R] {[-L Rutas.txt] | [-C]} | [-h|--help]
@@ -16,7 +34,7 @@
         
         -C, --Completo        Indica Hacer Un Escaneo Completo Con 483 Rutas.
 
-Ejemplos:
+**Ejemplos:**
 
         > Angelaz.py                            Corre El Script y Pide La Información
                                                 Necesaria De Forma Interna.
