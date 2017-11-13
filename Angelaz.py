@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
-# Python 2.7
+# Python 2.7 y 3.X
+# Windows
 #
 #        █████╗ ███╗   ██╗ ██████╗ ███████╗██╗      █████╗ ███████╗
 #       ██╔══██╗████╗  ██║██╔════╝ ██╔════╝██║     ██╔══██╗╚══███╔╝
@@ -8,7 +9,7 @@
 #       ██║  ██║██║ ╚████║╚██████╔╝███████╗███████╗██║  ██║███████╗
 #       ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝
 #                                                         By: LawlietJH
-#                                                               v1.2.0
+#                                                               v1.2.1
 
 import threading
 import time
@@ -21,9 +22,8 @@ import os
 #~ =====================================================================
 #~ =====================================================================
 
-
-
-Version = "v.1.2.0"
+PythonVer = str(sys.version.split(" ")[0].split(".")[0])
+Version = "v.1.2.1"
 
 # Banners: http://patorjk.com/software/taag/
 
@@ -59,7 +59,8 @@ try:
 	import requests
 except:
 	Dat()
-	print("\n\n\t [+] Instalando Dependencias... Requests "),
+	if PythonVer == "2": print("\n\n\t [+] Instalando Dependencias... Requests "),
+	if PythonVer == "3": print("\n\n\t [+] Instalando Dependencias... Requests ", end="")
 	os.system("python -m pip install requests > Nul")
 	try:
 		import requests
@@ -1664,21 +1665,43 @@ def Escanear(Pagina, Ruta):
 		Req = requests.get(Ruta)
 		http = Req.status_code
 			
-		if http == 200:   print("\n ---> [+]  Admin Panel Encontrado: " + Ruta),	# 200 - OK.						Pagina Encontrada.
-		elif http == 301: print("\n [!] [301] Movido Permanentemente: " + Ruta),	# 301 - Moved Permanently.		Pagina Movida Permanentemente.
-		elif http == 302: print("\n ---> [+]  Vulnerabilidad [EAR]: " + Ruta),		# 302 - Found.					Pagina Redireccionada.
-		elif http == 401: print("\n [!] [401] Acceso No Autorizado: " + Ruta),		# 401 - Unauthorized.			Pagina No Autorizada.
-		elif http == 403: print("\n [!] [403] Acceso Prohibido: " + Ruta),			# 403 - Forbidden.				Pagina Restringida.
-		elif http == 404: print("\n      [-]  " + Ruta),							# 404 - Not Found.				Pagina No Encontrada.
-		elif http == 410: print("\n [!] [410] Ya No Existe: " + Ruta),				# 410 - Gone.					Pagina Que Existia y No Volvera.
-		elif http == 500: print("\n [!] [500] Internal Server Error: " + Ruta),		# 500 - Internal Server Error.
-		else: print ("\n [!] [" + str(http) + "] " + Ruta),
+		if http == 200:
+			if   PythonVer == "2": print("\n ---> [+]  Admin Panel Encontrado: " + Ruta),		# 200 - OK.						Pagina Encontrada.
+			elif PythonVer == "3": print("\n ---> [+]  Admin Panel Encontrado: " + Ruta, end="")
+		elif http == 301:
+			if   PythonVer == "2": print("\n [!] [301] Movido Permanentemente: " + Ruta),		# 301 - Moved Permanently.		Pagina Movida Permanentemente.
+			elif PythonVer == "3": print("\n [!] [301] Movido Permanentemente: " + Ruta, end="")
+		elif http == 302:
+			if   PythonVer == "2": print("\n ---> [+]  Vulnerabilidad [EAR]: " + Ruta),			# 302 - Found.					Pagina Redireccionada.
+			elif PythonVer == "3": print("\n ---> [+]  Vulnerabilidad [EAR]: " + Ruta, end="")
+		elif http == 401:
+			if   PythonVer == "2": print("\n [!] [401] Acceso No Autorizado: " + Ruta),			# 401 - Unauthorized.			Pagina No Autorizada.
+			elif PythonVer == "3": print("\n [!] [401] Acceso No Autorizado: " + Ruta, end="")
+		elif http == 403:
+			if   PythonVer == "2": print("\n [!] [403] Acceso Prohibido: " + Ruta),				# 403 - Forbidden.				Pagina Restringida.
+			elif PythonVer == "3": print("\n [!] [403] Acceso Prohibido: " + Ruta, end="")
+		elif http == 404:
+			if   PythonVer == "2": print("\n      [-]  " + Ruta),								# 404 - Not Found.				Pagina No Encontrada.
+			elif PythonVer == "3": print("\n      [-]  " + Ruta, end="")
+		elif http == 410:
+			if   PythonVer == "2": print("\n [!] [410] Ya No Existe: " + Ruta),					# 410 - Gone.					Pagina Que Existia y No Volvera.
+			elif PythonVer == "3": print("\n [!] [410] Ya No Existe: " + Ruta, end="")
+		elif http == 500:
+			if   PythonVer == "2": print("\n [!] [500] Internal Server Error: " + Ruta),			# 500 - Internal Server Error.
+			elif PythonVer == "3": print("\n [!] [500] Internal Server Error: " + Ruta, end="")
+		else:
+			if   PythonVer == "2": print ("\n [!] [" + str(http) + "] " + Ruta),
+			elif PythonVer == "3": print ("\n [!] [" + str(http) + "] " + Ruta, end="")
 	
 	except KeyboardInterrupt: exit(1)
 	except Exception as e:
 		
-		if str(type(e).__name__) == "ConnectionError": print("\n   X  [!]  " + Ruta + u" <--- Error De Conección."),
-		else: print("\n   X  [!]  " + Ruta + " <--- " + str(type(e).__name__)),
+		if str(type(e).__name__) == "ConnectionError":
+			if   PythonVer == "2": print("\n   X  [!]  " + Ruta + u" <--- Error De Conección."),
+			elif PythonVer == "3": print("\n   X  [!]  " + Ruta + u" <--- Error De Conección.", end="")
+		else:
+			if   PythonVer == "2": print("\n   X  [!]  " + Ruta + " <--- " + str(type(e).__name__)),
+			elif PythonVer == "3": print("\n   X  [!]  " + Ruta + " <--- " + str(type(e).__name__), end="")
 
 
 
@@ -1898,7 +1921,9 @@ if __name__ == "__main__":
 	Chk = Pagina
 	while True:
 		
-		if Chk == None: Pagina = "http://" + raw_input("\n\n\n\t [~] URL: ").replace("https://","").replace("http://","").split("/")[0]
+		if Chk == None:
+			if PythonVer == "2": Pagina = "http://" + raw_input("\n\n\n\t [~] URL: ").replace("https://","").replace("http://","").split("/")[0]
+			if PythonVer == "3": Pagina = "http://" + input("\n\n\n\t [~] URL: ").replace("https://","").replace("http://","").split("/")[0]
 		else:
 			Pagina = "http://" + Pagina.replace("https://","").replace("http://","").split("/")[0]
 			print("\n\n\n [+] URL: " + Pagina)
@@ -1915,11 +1940,18 @@ if __name__ == "__main__":
 	
 	if Robot == None:
 		
-		if raw_input("\n\n\n\t [~] Buscar Robots.txt [S/N]: ").lower() in ["s","si","y","yes"]:
-			
-			print("\n\n\n [+] Buscando Robots.txt ...")
-			print(Robots(Pagina))
+		if PythonVer == "2": 
+			if raw_input("\n\n\n\t [~] Buscar Robots.txt [S/N]: ").lower() in ["s","si","y","yes"]:
+				
+				print("\n\n\n [+] Buscando Robots.txt ...")
+				print(Robots(Pagina))
 		
+		if PythonVer == "3": 
+			if input("\n\n\n\t [~] Buscar Robots.txt [S/N]: ").lower() in ["s","si","y","yes"]:
+				
+				print("\n\n\n [+] Buscando Robots.txt ...")
+				print(Robots(Pagina))
+			
 	elif Robot == True:
 		
 		print("\n\n\n [+] Buscando Robots.txt ...")
