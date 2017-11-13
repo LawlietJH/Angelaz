@@ -9,9 +9,11 @@
 #       ██║  ██║██║ ╚████║╚██████╔╝███████╗███████╗██║  ██║███████╗
 #       ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝
 #                                                         By: LawlietJH
-#                                                               v1.2.2
+#                                                               v1.2.3
 
 import threading
+import datetime
+import datetime
 import time
 import sys
 import os
@@ -23,7 +25,7 @@ import os
 #~ =====================================================================
 
 PythonVer = str(sys.version.split(" ")[0].split(".")[0])
-Version = "v.1.2.2"
+Version = "v.1.2.3"
 
 # Banners: http://patorjk.com/software/taag/
 
@@ -1647,7 +1649,7 @@ def Robots(Pagina):
 				Cadena += Req.text + "\n\n"
 				Cadena += "================================================\n\n"
 				
-				with open(Pagina.split("http://")[1] + " - Robot.txt", "w") as File: File.write(Req.text), File.close()
+				with open(Pagina.split("http://")[1] + " - Robots.txt", "w") as File: File.write(Req.text), File.close()
 				
 				return Cadena
 		
@@ -1666,35 +1668,48 @@ def Escanear(Pagina, Ruta):
 		Ruta = Pagina + Ruta
 		Req = requests.get(Ruta)
 		http = Req.status_code
+		
+		with open(Pagina.split("http://")[1] + " - Admin Panels.txt", "a") as File:
+		
+			if http == 200:
+				File.write("\n [+] Admin Panel Encontrado:       " + Ruta)
+				if   PythonVer == "2": print("\n ---> [+]  Admin Panel Encontrado: " + Ruta),		# 200 - OK.						Pagina Encontrada.
+				elif PythonVer == "3": print(" ---> [+]  Admin Panel Encontrado: " + Ruta)
+			elif http == 301:
+				File.write("\n [!] [301] Movido Permanentemente: " + Ruta)
+				if   PythonVer == "2": print("\n [!] [301] Movido Permanentemente: " + Ruta),		# 301 - Moved Permanently.		Pagina Movida Permanentemente.
+				elif PythonVer == "3": print(" [!] [301] Movido Permanentemente: " + Ruta)
+			elif http == 302:
+				File.write("\n [+] Vulnerabilidad [EAR]:         " + Ruta), File.close()
+				if   PythonVer == "2": print("\n ---> [+]  Vulnerabilidad [EAR]: " + Ruta),			# 302 - Found.					Pagina Redireccionada.
+				elif PythonVer == "3": print(" ---> [+]  Vulnerabilidad [EAR]: " + Ruta)
+			elif http == 401:
+				File.write("\n [!] [401] Acceso No Autorizado:   " + Ruta)
+				if   PythonVer == "2": print("\n [!] [401] Acceso No Autorizado: " + Ruta),			# 401 - Unauthorized.			Pagina No Autorizada.
+				elif PythonVer == "3": print(" [!] [401] Acceso No Autorizado: " + Ruta)
+			elif http == 403:
+				File.write("\n [!] [403] Acceso Prohibido:       " + Ruta)
+				if   PythonVer == "2": print("\n [!] [403] Acceso Prohibido: " + Ruta),				# 403 - Forbidden.				Pagina Restringida.
+				elif PythonVer == "3": print(" [!] [403] Acceso Prohibido: " + Ruta)
+			elif http == 404:
+				#~ File.write("\n      [-]  " + Ruta)
+				if   PythonVer == "2": print("\n      [-]  " + Ruta),								# 404 - Not Found.				Pagina No Encontrada.
+				elif PythonVer == "3": print("      [-]  " + Ruta)
+			elif http == 410:
+				File.write("\n [!] [410] Ya No Existe:           " + Ruta)
+				if   PythonVer == "2": print("\n [!] [410] Ya No Existe: " + Ruta),					# 410 - Gone.					Pagina Que Existia y No Volvera.
+				elif PythonVer == "3": print(" [!] [410] Ya No Existe: " + Ruta)
+			elif http == 500:
+				File.write("\n [!] [500] Internal Server Error:  " + Ruta)
+				if   PythonVer == "2": print("\n [!] [500] Internal Server Error: " + Ruta),		# 500 - Internal Server Error.
+				elif PythonVer == "3": print(" [!] [500] Internal Server Error: " + Ruta)
+			else:
+				File.write("\n [!] [" + str(http) + "]                         " + Ruta)
+				if   PythonVer == "2": print ("\n [!] [" + str(http) + "] " + Ruta),
+				elif PythonVer == "3": print (" [!] [" + str(http) + "] " + Ruta)
 			
-		if http == 200:
-			if   PythonVer == "2": print("\n ---> [+]  Admin Panel Encontrado: " + Ruta),		# 200 - OK.						Pagina Encontrada.
-			elif PythonVer == "3": print(" ---> [+]  Admin Panel Encontrado: " + Ruta)
-		elif http == 301:
-			if   PythonVer == "2": print("\n [!] [301] Movido Permanentemente: " + Ruta),		# 301 - Moved Permanently.		Pagina Movida Permanentemente.
-			elif PythonVer == "3": print(" [!] [301] Movido Permanentemente: " + Ruta)
-		elif http == 302:
-			if   PythonVer == "2": print("\n ---> [+]  Vulnerabilidad [EAR]: " + Ruta),			# 302 - Found.					Pagina Redireccionada.
-			elif PythonVer == "3": print(" ---> [+]  Vulnerabilidad [EAR]: " + Ruta)
-		elif http == 401:
-			if   PythonVer == "2": print("\n [!] [401] Acceso No Autorizado: " + Ruta),			# 401 - Unauthorized.			Pagina No Autorizada.
-			elif PythonVer == "3": print(" [!] [401] Acceso No Autorizado: " + Ruta)
-		elif http == 403:
-			if   PythonVer == "2": print("\n [!] [403] Acceso Prohibido: " + Ruta),				# 403 - Forbidden.				Pagina Restringida.
-			elif PythonVer == "3": print(" [!] [403] Acceso Prohibido: " + Ruta)
-		elif http == 404:
-			if   PythonVer == "2": print("\n      [-]  " + Ruta),								# 404 - Not Found.				Pagina No Encontrada.
-			elif PythonVer == "3": print("      [-]  " + Ruta)
-		elif http == 410:
-			if   PythonVer == "2": print("\n [!] [410] Ya No Existe: " + Ruta),					# 410 - Gone.					Pagina Que Existia y No Volvera.
-			elif PythonVer == "3": print(" [!] [410] Ya No Existe: " + Ruta)
-		elif http == 500:
-			if   PythonVer == "2": print("\n [!] [500] Internal Server Error: " + Ruta),			# 500 - Internal Server Error.
-			elif PythonVer == "3": print(" [!] [500] Internal Server Error: " + Ruta)
-		else:
-			if   PythonVer == "2": print ("\n [!] [" + str(http) + "] " + Ruta),
-			elif PythonVer == "3": print (" [!] [" + str(http) + "] " + Ruta)
-	
+			File.close()
+			
 	except KeyboardInterrupt: exit(1)
 	except Exception as e:
 		
@@ -1774,6 +1789,46 @@ def Filtrar(Ruta):
 		return True
 		
 	else: return False
+
+
+
+def LogFile():
+	
+	global Pagina
+	
+	if os.path.exists(Pagina.split("http://")[1] + " - Admin Panels.txt"):
+		
+		with open(Pagina.split("http://")[1] + " - Admin Panels.txt", "a") as File:
+			
+			import locale
+			
+			locale.setlocale(locale.LC_ALL, "es-MX")
+			
+			dt = datetime.datetime.now()
+			FH = dt.strftime("%A %d de %B del %Y - %H:%M").title()
+			
+			File.write("\n\n" +\
+			"\n========================================================================\n" +\
+			" [~] Log: " + FH +\
+			"\n========================================================================\n")
+			File.close()
+	
+	else:
+		
+		with open(Pagina.split("http://")[1] + " - Admin Panels.txt", "a") as File:
+			
+			import locale
+			
+			locale.setlocale(locale.LC_ALL, "es-MX")
+			
+			dt = datetime.datetime.now()
+			FH = dt.strftime("%A %d de %B del %Y - %H:%M").title()
+			
+			File.write("\n [+] Por: LawlietJH - Angelaz " + Version + "\n\n" +\
+			"\n========================================================================\n" +\
+			" [~] Log: " + FH +\
+			"\n========================================================================\n")
+			File.close()
 
 
 
@@ -1939,6 +1994,8 @@ if __name__ == "__main__":
 			continue
 			
 		break
+	
+	LogFile()
 	
 	if Robot == None:
 		
