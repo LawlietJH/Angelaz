@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 # Python 2.7
+#
 #        █████╗ ███╗   ██╗ ██████╗ ███████╗██╗      █████╗ ███████╗
 #       ██╔══██╗████╗  ██║██╔════╝ ██╔════╝██║     ██╔══██╗╚══███╔╝
 #       ███████║██╔██╗ ██║██║  ███╗█████╗  ██║     ███████║  ███╔╝ 
@@ -7,8 +8,7 @@
 #       ██║  ██║██║ ╚████║╚██████╔╝███████╗███████╗██║  ██║███████╗
 #       ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝
 #                                                         By: LawlietJH
-#                                                               v1.1.0
-# Python 2.7
+#                                                               v1.1.1
 
 import threading
 import time
@@ -23,7 +23,7 @@ import os
 
 
 
-Version = "v.1.1.0"
+Version = "v.1.1.1"
 
 # Banners: http://patorjk.com/software/taag/
 
@@ -316,6 +316,8 @@ def Argumentos():
 
 
 #========================================================================
+#========================================================================
+#========================================================================
 
 
 
@@ -379,6 +381,8 @@ def Escanear(Pagina, Ruta):
 
 
 #========================================================================
+#========================================================================
+#========================================================================
 
 
 
@@ -386,6 +390,7 @@ Pagina = None
 Robot = None
 Lista = None
 FullScan = None
+TipoRuta = None
 EscaneoTipo = ""
 Rutas = []
 
@@ -429,7 +434,8 @@ RutasFull = [
  '/yonetim.asp', '/yonetim.html', '/yonetim.php'
 ]
 
-Modo_De_Uso = u""" [+] Modo De Uso:\n\n\n Angelaz.py [-P Pagina.com][-R] ([-L Rutas.txt] | [-C]) | [-h]
+Modo_De_Uso = u"""\
+ [+] Modo De Uso:\n\n\n Angelaz.py [-P Pagina.com][-R] ([-L Rutas.txt] | [-C]) | [-h]
   
   
   -h, --help            Muestra este Mensaje y Sale del Script.
@@ -461,6 +467,10 @@ Modo_De_Uso = u""" [+] Modo De Uso:\n\n\n Angelaz.py [-P Pagina.com][-R] ([-L Ru
                                     483 Rutas. No Puedes Combinar -C y -L.
 """
 
+
+
+#========================================================================
+#========================================================================
 #========================================================================
 
 
@@ -544,10 +554,37 @@ if __name__ == "__main__":
 	
 	for Ruta in Rutas:
 		
-		time.sleep(.01)
-		if Ruta.startswith("/"):
-			threading.Thread(target=Escanear, args=(Pagina, Ruta, )).start()
-		else:
-			threading.Thread(target=Escanear, args=(Pagina, "/" + Ruta, )).start()
+		if TipoRuta != None:
+		
+			if TipoRuta.lower() == "php":
+				if not Ruta.lower().endswith(".asp") and not Ruta.lower().endswith(".html"):
+					
+					time.sleep(.01)
+					if Ruta.startswith("/"): threading.Thread(target=Escanear, args=(Pagina, Ruta, )).start()
+					else: threading.Thread(target=Escanear, args=(Pagina, "/" + Ruta, )).start()
+			
+			elif TipoRuta.lower() == "asp":
+				if not Ruta.lower().endswith(".php") and not Ruta.lower().endswith(".html"):
+					
+					time.sleep(.01)
+					if Ruta.startswith("/"): threading.Thread(target=Escanear, args=(Pagina, Ruta, )).start()
+					else: threading.Thread(target=Escanear, args=(Pagina, "/" + Ruta, )).start()
+			
+			elif TipoRuta.lower() == "html":
+				if not Ruta.lower().endswith(".php") and not Ruta.lower().endswith(".asp"):
+					
+					time.sleep(.01)
+					if Ruta.startswith("/"): threading.Thread(target=Escanear, args=(Pagina, Ruta, )).start()
+					else: threading.Thread(target=Escanear, args=(Pagina, "/" + Ruta, )).start()
+			else:
+				os.system("Cls")
+				Dat()
+				print("\n" + Modo_De_Uso)
+				
+		elif TipoRuta == None:
+			
+			time.sleep(.01)
+			if Ruta.startswith("/"): threading.Thread(target=Escanear, args=(Pagina, Ruta, )).start()
+			else: threading.Thread(target=Escanear, args=(Pagina, "/" + Ruta, )).start()
 
 
