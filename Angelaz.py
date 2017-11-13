@@ -7,7 +7,7 @@
 #       ██║  ██║██║ ╚████║╚██████╔╝███████╗███████╗██║  ██║███████╗
 #       ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝
 #                                                         By: LawlietJH
-#                                                               v1.0.9
+#                                                               v1.1.0
 # Python 2.7
 
 import threading
@@ -23,7 +23,7 @@ import os
 
 
 
-Version = "v.1.0.9"
+Version = "v.1.1.0"
 
 # Banners: http://patorjk.com/software/taag/
 
@@ -33,8 +33,7 @@ Banner = u"""
           ███████║██╔██╗ ██║██║  ███╗█████╗  ██║     ███████║  ███╔╝ 
           ██╔══██║██║╚██╗██║██║   ██║██╔══╝  ██║     ██╔══██║ ███╔╝  
           ██║  ██║██║ ╚████║╚██████╔╝███████╗███████╗██║  ██║███████╗
-          ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝
-"""
+          ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝"""
 # Fuente: ANSI Shadow - http://patorjk.com/software/taag/#p=display&f=ANSI%20Shadow&t=Angelaz
 
 Autor = u"""
@@ -81,48 +80,58 @@ except:
 
 def Argumentos():
 	
-	global Pagina, Robot, Lista, Fast
+	global Pagina, Robot, Lista, FullScan
 	
 	Args = sys.argv
 	
 	if len(Args) == 6:
 		
-		if Args[1] == "-R" and Args[2] == "-P" and Args[4] == "-L":
+		if  (Args[1].lower() == "-r" or  Args[1].lower() == "--robots")\
+		 and Args[2].lower() == "-p" and Args[4].lower() == "-l":
 			
 			Lista = Args[5]
 			Pagina = Args[3]
 			Robot = True
 			return True
 			
-		elif Args[1] == "-R" and Args[2] == "-L" and Args[4] == "-P":
+		elif (Args[1].lower() == "-r" or  Args[1].lower() == "--robots")\
+		 and  Args[2].lower() == "-l" and Args[4].lower() == "-p":
 			
 			Lista = Args[3]
 			Pagina = Args[5]
 			Robot = True
 			return True
 			
-		elif Args[1] == "-P" and Args[3] == "-R" and Args[4] == "-L":
+		elif  Args[1].lower() == "-p"\
+		 and (Args[3].lower() == "-r" or Args[3].lower() == "--robots")\
+		 and  Args[4].lower() == "-l":
 			
 			Lista = Args[5]
 			Pagina = Args[2]
 			Robot = True
 			return True
 			
-		elif Args[1] == "-P" and Args[3] == "-L" and Args[5] == "-R":
+		elif Args[1].lower() == "-p"\
+		 and Args[3].lower() == "-l"\
+		 and (Args[5].lower() == "-r" or Args[5].lower() == "--robots"):
 			
 			Lista = Args[4]
 			Pagina = Args[2]
 			Robot = True
 			return True
 			
-		elif Args[1] == "-L" and Args[3] == "-R" and Args[4] == "-P":
+		elif  Args[1].lower() == "-l"\
+		 and (Args[3].lower() == "-r" or Args[3].lower() == "--robots")\
+		 and  Args[4].lower() == "-l":
 			
 			Lista = Args[2]
 			Pagina = Args[5]
 			Robot = True
 			return True
 			
-		elif Args[1] == "-L" and Args[3] == "-P" and Args[5] == "-R":
+		elif  Args[1].lower() == "-l"\
+		 and  Args[3].lower() == "-p"\
+		 and (Args[5].lower() == "-r" or Args[5].lower() == "--robots"):
 			
 			Lista = Args[2]
 			Pagina = Args[4]
@@ -131,41 +140,123 @@ def Argumentos():
 			
 		else: return False
 		
-	if len(Args) == 5:
+	elif len(Args) == 5:
 		
-		if Args[1] == "-P" and Args[3] == "-L":
+		if Args[1].lower() == "-p" and Args[3].lower() == "-l":
 			
 			Lista = Args[4]
 			Pagina = Args[2]
 			Robot = False
 			return True
 		
-		elif Args[1] == "-L" and Args[3] == "-P":
+		elif Args[1].lower() == "-l" and Args[3].lower() == "-p":
 			
 			Lista = Args[2]
 			Pagina = Args[4]
 			Robot = False
 			return True
-			
-		else: return False
 		
-	if len(Args) == 4:
-		
-		if Args[1] == "-P" and Args[3] == "-R":
+		elif  Args[1].lower() == "-p"\
+		 and (Args[3].lower() == "-r" or Args[3].lower() == "--robots")\
+		 and (Args[4].lower() == "-c" or Args[4].lower() == "--completo"):
 			
 			Pagina = Args[2]
+			FullScan = True
 			Robot = True
 			return True
-		
-		elif Args[1] == "-R" and Args[2] == "-P":
+			
+		elif  Args[1].lower() == "-p"\
+		 and (Args[3].lower() == "-c" or Args[3].lower() == "--completo")\
+		 and (Args[4].lower() == "-r" or Args[4].lower() == "--robots"):
+			
+			Pagina = Args[2]
+			FullScan = True
+			Robot = True
+			return True
+			
+		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots")\
+		 and  Args[2].lower() == "-p"\
+		 and (Args[4].lower() == "-c" or Args[4].lower() == "--completo"):
 			
 			Pagina = Args[3]
+			FullScan = True
+			Robot = True
+			return True
+			
+		elif (Args[1].lower() == "-c" or Args[1].lower() == "--completo")\
+		 and  Args[2].lower() == "-p"\
+		 and (Args[4].lower() == "-r" or Args[4].lower() == "--robots"):
+			
+			Pagina = Args[3]
+			FullScan = True
+			Robot = True
+			return True
+			
+		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots")\
+		 and (Args[4].lower() == "-c" or Args[4].lower() == "--completo")\
+		 and  Args[3].lower() == "-p":
+			
+			Pagina = Args[4]
+			FullScan = True
+			Robot = True
+			return True
+			
+		elif (Args[1].lower() == "-c" or Args[1].lower() == "--completo")\
+		 and (Args[2].lower() == "-r" or Args[2].lower() == "--robots")\
+		 and  Args[3].lower() == "-p":
+			
+			Pagina = Args[4]
+			FullScan = True
 			Robot = True
 			return True
 			
 		else: return False
 		
-	if len(Args) == 3:
+	elif len(Args) == 4:
+		
+		if Args[1].lower() == "-p" and (Args[3].lower() == "-r" or Args[3].lower() == "--robots"):
+			
+			Pagina = Args[2]
+			FullScan = False
+			Robot = True
+			return True
+		
+		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots") and Args[2].lower() == "-p":
+			
+			Pagina = Args[3]
+			FullScan = False
+			Robot = True
+			return True
+			
+		elif Args[1].lower() == "-p" and (Args[3].lower() == "-c" or Args[3].lower() == "--completo"):
+			
+			Pagina = Args[2]
+			FullScan = True
+			Robot = False
+			return True
+		
+		elif (Args[1].lower() == "-c" or Args[1].lower() == "--completo") and Args[2].lower() == "-p":
+			
+			Pagina = Args[3]
+			FullScan = True
+			Robot = False
+			return True
+			
+		elif Args[1].lower() == "-l" and (Args[3].lower() == "-r" or Args[3].lower() == "--robots"):
+			
+			Lista = Args[2]
+			Robot = True
+			return True
+		
+		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots") and Args[2].lower() == "-l":
+			
+			Lista = Args[3]
+			Robot = True
+			return True
+			
+		else: return False
+		
+	elif len(Args) == 3:
 		
 		if Args[1] == "-P":
 			
@@ -179,17 +270,37 @@ def Argumentos():
 			Robot = False
 			return True
 			
+		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots")\
+		 and (Args[2].lower() == "-c" or Args[2].lower() == "--completo"):
+			
+			FullScan = True
+			Robot = True
+			return True
+			
+		elif (Args[1].lower() == "-c" or Args[1].lower() == "--completo")\
+		 and (Args[2].lower() == "-r" or Args[2].lower() == "--robots"):
+			
+			FullScan = True
+			Robot = True
+			return True
+			
 		else: return False
 		
 	elif len(Args) == 2:
 		
-		if Args[1] == "-R":
+		if Args[1].lower() == "-r" or Args[1].lower() == "--robots":
 			
+			FullScan = False
 			Robot = True
 			return True
 			
-		
-		if Args[1] == "-h" or Args[1] == "--help":
+		elif Args[1].lower() == "-c" or Args[1].lower() == "--completo":
+			
+			FullScan = True
+			Robot = False
+			return True
+			
+		elif Args[1].lower() == "-h" or Args[1].lower() == "--help":
 			
 			os.system("Cls")
 			Dat()
@@ -274,7 +385,9 @@ def Escanear(Pagina, Ruta):
 Pagina = None
 Robot = None
 Lista = None
-Fast = True
+FullScan = None
+EscaneoTipo = ""
+Rutas = []
 
 # 140 Rutas.
 RutasFast = [
@@ -316,32 +429,36 @@ RutasFull = [
  '/yonetim.asp', '/yonetim.html', '/yonetim.php'
 ]
 
-Modo_De_Uso = """ [+] Modo De Uso:\n\n\n Angelaz.py [-P Pagina.com][-L Rutas.txt][-R] | [-h|--help]
-
-
+Modo_De_Uso = u""" [+] Modo De Uso:\n\n\n Angelaz.py [-P Pagina.com][-R] ([-L Rutas.txt] | [-C]) | [-h]
+  
+  
   -h, --help            Muestra este Mensaje y Sale del Script.
   
-  -P PAGINA.COM         Pagina a Escanear.
+  -P  PAGINA.COM        Página a Escanear.
   
-  -L LISTA.TXT          Archivo con la Lista de Rutas.txt.
-
-  -R                    Indica Si Se Desea Buscart El Archivo Robots.txt.
-
-
-  [+] Ejemplos:
-    
-  > Angelaz.py                      Corre El Script y Pide La Informacion
+  -L  LISTA.TXT         Archivo con la Lista de Rutas.txt.
+  
+  -R, --Robots          Indica Si Se Desea Buscar El Archivo Robots.txt.
+  
+  -C, --Completo        Indica Hacer Un Escaneo Completo Con 483 Rutas.
+  
+  
+ [+] Ejemplos:
+  
+ > Angelaz.py                       Corre El Script y Pide La Información
                                     Necesaria De Forma Interna.
-  
-  > Angelaz.py -h                   Muestra El Mensaje de Ayuda.
-  
-  > Angelaz.py -P Pagina.com        Realiza Escaneo a La Pagina Usando 
-                                    Las Rutas En Lista Interna.
-                                                
-  > Angelaz.py -P xD.com -L Rutas.txt -R  Realiza Escaneo a La Pagina Usando 
-                                          Las Rutas Del Archivo de Rutas.txt
-                                          y Busca El Archivo Robots.txt.
-
+                                    
+ > Angelaz.py -h                    Muestra El Modo De Uso.
+ 
+ > Angelaz.py -P Pagina.com         Realiza Escaneo a La Página Usando Las
+                                    Rutas Una Lista Interna Con 140 Rutas.
+                                         
+ > Angelaz.py -P xD.com -L Rutas.txt -R  Realiza Escaneo a La Página Usando
+                                         Las Rutas Del Archivo Rutas.txt y
+                                         Busca El Archivo Robots.txt.
+                                         
+ > Angelaz.py -P xD.com -R -C       Agregar -C Hace Un Escaneo Completo Con
+                                    483 Rutas. No Puedes Combinar -C y -L.
 """
 
 #========================================================================
@@ -377,14 +494,16 @@ if __name__ == "__main__":
 					
 					Rutas.append(x.replace("\n",""))
 				
-				print("\n\n\t [~] " + str(len(Rutas)) + " Rutas Cargadas")
+				print("\n\n\t [~] " + str(len(Rutas)) + " Rutas Cargadas.")
+				EscaneoTipo = "Escaeo Personalizado Con " + str(len(Rutas)) + " Rutas."
+				FullScan  = ""
 				
 				time.sleep(1)
 		
 		else:
 			os.system("Cls")
 			Dat()
-			print("\n\t [!] El Archivo " + Lista + " No Existe.\n\n")
+			print("\n\t [!] El Archivo " + Lis + " No Existe.\n\n")
 			print("\n" + Modo_De_Uso)
 			sys.exit(0)
 	
@@ -406,7 +525,7 @@ if __name__ == "__main__":
 			
 		break
 	
-	if Robot == None or Robot == False:
+	if Robot == None:
 		
 		if raw_input("\n\n\n\t [~] Buscar Robots.txt [S/N]: ").lower() in ["s","si","y","yes"]:
 			
@@ -418,14 +537,17 @@ if __name__ == "__main__":
 		print("\n\n\n [+] Buscando Robots.txt ...")
 		print(Robots(Pagina))
 	
-	if Fast: EscaneoTipo = u"Escaneo Rápido " + str(len(RutasFast)) + " Rutas."; Rutas = RutasFast
-	else:    EscaneoTipo = "Escaneo Completo" + str(len(RutasFull)) + " Rutas."; Rutas = RutasFull
+	if   FullScan == True: EscaneoTipo = "Escaneo Completo Con " + str(len(RutasFull)) + " Rutas."; Rutas = RutasFull
+	elif FullScan == False or FullScan == None: EscaneoTipo = u"Escaneo Rápido Con " + str(len(RutasFast)) + " Rutas."; Rutas = RutasFast
 	
 	print("\n\n\n [+] Buscando Admin Panels... " + EscaneoTipo + "\n\n")
 	
 	for Ruta in Rutas:
 		
 		time.sleep(.01)
-		threading.Thread(target=Escanear, args=(Pagina, "/"+Ruta, )).start()
+		if Ruta.startswith("/"):
+			threading.Thread(target=Escanear, args=(Pagina, Ruta, )).start()
+		else:
+			threading.Thread(target=Escanear, args=(Pagina, "/" + Ruta, )).start()
 
 
