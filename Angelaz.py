@@ -9,7 +9,7 @@
 #       ██║  ██║██║ ╚████║╚██████╔╝███████╗███████╗██║  ██║███████╗
 #       ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝
 #                                                         By: LawlietJH
-#                                                               v1.2.1
+#                                                               v1.2.2
 
 import threading
 import time
@@ -23,7 +23,7 @@ import os
 #~ =====================================================================
 
 PythonVer = str(sys.version.split(" ")[0].split(".")[0])
-Version = "v.1.2.1"
+Version = "v.1.2.2"
 
 # Banners: http://patorjk.com/software/taag/
 
@@ -1644,8 +1644,10 @@ def Robots(Pagina):
 				Cadena += "\n\n\t [+] Robots.txt Encontrado."
 				Cadena += "\n\n\n [~] Contenido de Robots.txt:\n\n"
 				Cadena += "================================================\n\n\n"
-				Cadena +=  Req.text + "\n\n"
+				Cadena += Req.text + "\n\n"
 				Cadena += "================================================\n\n"
+				
+				with open(Pagina.split("http://")[1] + " - Robot.txt", "w") as File: File.write(Req.text), File.close()
 				
 				return Cadena
 		
