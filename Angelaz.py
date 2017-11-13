@@ -8,7 +8,7 @@
 #       ██║  ██║██║ ╚████║╚██████╔╝███████╗███████╗██║  ██║███████╗
 #       ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝
 #                                                         By: LawlietJH
-#                                                               v1.1.3
+#                                                               v1.1.4
 
 import threading
 import time
@@ -23,7 +23,7 @@ import os
 
 
 
-Version = "v.1.1.3"
+Version = "v.1.1.4"
 
 # Banners: http://patorjk.com/software/taag/
 
@@ -408,42 +408,70 @@ def Escanear(Pagina, Ruta):
 
 def Filtrar(Ruta):
 	
-	if TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
-	or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php"\
-	or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php":
+	if  TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
+	 or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php"\
+	 or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php":
 			
-			return True
-	
+		time.sleep(.01)
+		if Ruta.startswith("/"): threading.Thread(target=Escanear, args=(Pagina, Ruta, )).start()
+		else: threading.Thread(target=Escanear, args=(Pagina, "/" + Ruta, )).start()
+			
+		return True
+		
 	elif TipoRuta.lower() == "php asp" or TipoRuta.lower() == "asp php":
 		if not Ruta.lower().endswith(".html"):
 			
-			return True
-	
-	elif TipoRuta.lower() == "asp html" or TipoRuta.lower() == "html asp":
-		if not Ruta.lower().endswith(".php") and not Ruta.lower().endswith(".html"):
+			time.sleep(.01)
+			if Ruta.startswith("/"): threading.Thread(target=Escanear, args=(Pagina, Ruta, )).start()
+			else: threading.Thread(target=Escanear, args=(Pagina, "/" + Ruta, )).start()
 			
-			return True
-	
+		return True
+		
+	elif TipoRuta.lower() == "asp html" or TipoRuta.lower() == "html asp":
+		if not Ruta.lower().endswith(".php"):
+			
+			time.sleep(.01)
+			if Ruta.startswith("/"): threading.Thread(target=Escanear, args=(Pagina, Ruta, )).start()
+			else: threading.Thread(target=Escanear, args=(Pagina, "/" + Ruta, )).start()
+			
+		return True
+		
 	elif TipoRuta.lower() == "html php" or TipoRuta.lower() == "php html":
 		if not Ruta.lower().endswith(".asp"):
 			
-			return True
-	
+			time.sleep(.01)
+			if Ruta.startswith("/"): threading.Thread(target=Escanear, args=(Pagina, Ruta, )).start()
+			else: threading.Thread(target=Escanear, args=(Pagina, "/" + Ruta, )).start()
+			
+		return True
+		
 	elif TipoRuta.lower() == "php":
 		if not Ruta.lower().endswith(".asp") and not Ruta.lower().endswith(".html"):
 			
-			return True
-	
+			time.sleep(.01)
+			if Ruta.startswith("/"): threading.Thread(target=Escanear, args=(Pagina, Ruta, )).start()
+			else: threading.Thread(target=Escanear, args=(Pagina, "/" + Ruta, )).start()
+			
+		return True
+		
 	elif TipoRuta.lower() == "asp":
 		if not Ruta.lower().endswith(".php") and not Ruta.lower().endswith(".html"):
 			
-			return True
-	
+			time.sleep(.01)
+			if Ruta.startswith("/"): threading.Thread(target=Escanear, args=(Pagina, Ruta, )).start()
+			else: threading.Thread(target=Escanear, args=(Pagina, "/" + Ruta, )).start()
+			
+		return True
+		
 	elif TipoRuta.lower() == "html":
 		if not Ruta.lower().endswith(".php") and not Ruta.lower().endswith(".asp"):
 			
-			return True
-	
+			time.sleep(.01)
+			if Ruta.startswith("/"): threading.Thread(target=Escanear, args=(Pagina, Ruta, )).start()
+			else: threading.Thread(target=Escanear, args=(Pagina, "/" + Ruta, )).start()
+			
+		return True
+		
 	else: return False
 
 
@@ -458,7 +486,7 @@ Pagina = None
 Robot = None
 Lista = None
 FullScan = None
-TipoRuta = "Sin Filtros"
+TipoRuta = None
 EscaneoTipo = ""
 Rutas = []
 
@@ -622,21 +650,17 @@ if __name__ == "__main__":
 	if   FullScan == True: EscaneoTipo = "Escaneo Completo Con " + str(len(RutasFull)) + " Rutas."; Rutas = RutasFull
 	elif FullScan == False or FullScan == None: EscaneoTipo = u"Escaneo Rápido Con " + str(len(RutasFast)) + " Rutas."; Rutas = RutasFast
 	
-	print("\n\n\n [+] " + EscaneoTipo + "\n [+] Filtrado Por: " + TipoRuta + ".\n\n [+] Buscando Admin Panels...")
+	if TipoRuta == None: print("\n\n\n [+] " + EscaneoTipo + "\n\n [+] Filtrado Por: Sin Filtros.\n\n\n [+] Buscando Admin Panels...")
+	else: print("\n\n\n [+] " + EscaneoTipo + "\n\n [+] Filtrado Por: " + TipoRuta + ".\n\n\n [+] Buscando Admin Panels...")
 	
 	for Ruta in Rutas:
 		
 		if TipoRuta != None:
 			
-			if Filtrar(Ruta):
-				
-				time.sleep(.01)
-				if Ruta.startswith("/"): threading.Thread(target=Escanear, args=(Pagina, Ruta, )).start()
-				else: threading.Thread(target=Escanear, args=(Pagina, "/" + Ruta, )).start()
-			
-			else:
+			if not Filtrar(Ruta):
 				
 				os.system("Cls")
+				print(True)
 				Dat()
 				print("\n" + Modo_De_Uso)
 				sys.exit(1)
