@@ -8,15 +8,15 @@
 ### Caracteristicas: Busca Login de Admin (Admin Panels) y Vulnerabilidades EAR.
 
    + **Tiene Multiprocesamiento Usando Hilos de Ejecución (Threads).**
-   + **2 Grandes Listas de Rutas Internas.**
+   + **Tiene 2 Grandes Listas Internas de Rutas.**
    
         + **140 Rutas: *Para Escaneo Por Defecto.***
         + **483 Rutas: *Para Escaneo Completo.***
         
-   + **Soporta Extensiones PHP, ASP y HTML.**
-   + **Busca posibles vulnerabilidades de EAR.**
+   + **Soporta Busqueda De Rutas Con Extensiones PHP, ASP y HTML.**
+   + **Busca Posibles Vulnerabilidades de EAR.**
    + **Busca y Extrae Archivos Robots.txt.**
-   + **Soporta Listas De Rutas Propias.**
+   + **Soporta Agregar Rutas Desde Una Lista Propia De Usuario.**
 
 - - -
 
