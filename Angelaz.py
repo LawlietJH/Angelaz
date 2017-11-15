@@ -9,11 +9,11 @@
 #       ██║  ██║██║ ╚████║╚██████╔╝███████╗███████╗██║  ██║███████╗
 #       ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝
 #                                                         By: LawlietJH
-#                                                               v1.2.3
+#                                                               v1.2.4
 
 import threading
 import datetime
-import datetime
+import Arguz
 import time
 import sys
 import os
@@ -24,8 +24,8 @@ import os
 #~ =====================================================================
 #~ =====================================================================
 
-PythonVer = str(sys.version.split(" ")[0].split(".")[0])
-Version = "v.1.2.3"
+PythonVer = sys.version[0]
+Version = "v.1.2.4"
 
 # Banners: http://patorjk.com/software/taag/
 
@@ -85,36 +85,26 @@ def Argumentos():
 	
 	global Pagina, Robot, Lista, FullScan, TipoRuta
 	
+	Valor = {}
 	Args = sys.argv
 	
-	#~ if len(Args) == 8:
+	if len(Args) == 8:
 		
-		#~ # Angelaz.py -P xD.com -T PHP -L Paths.txt -R
-		#~ if   (Args[1].lower() == "-p" or Args[1].lower() == "--pagina")\
-		 #~ and (Args[3].lower() == "-t" or Args[3].lower() == "--tipo")\
-		 #~ and (Args[5].lower() == "-l" or Args[5].lower() == "--lista")\
-		 #~ and (Args[7].lower() == "-r" or Args[7].lower() == "--robots"):
-			
-			#~ TipoRuta = Args[4].replace('"',"")
-				
-			#~ if  TipoRuta.lower() == "php"\
-			 #~ or TipoRuta.lower() == "asp"\
-			 #~ or TipoRuta.lower() == "html"\
-			 #~ or TipoRuta.lower() == "php asp"  or TipoRuta.lower() == "php html"\
-			 #~ or TipoRuta.lower() == "asp php"  or TipoRuta.lower() == "asp html"\
-			 #~ or TipoRuta.lower() == "html php" or TipoRuta.lower() == "html asp"\
-			 #~ or TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
-			 #~ or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php"\
-			 #~ or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php":
-				
-				#~ Pagina = Args[2]
-				#~ Lista = Args[6]
-				#~ Robot = True
-				#~ return True
-			
-			#~ else: return False
+		Valor = Arguz.Arg8(Args)
 		
-		#~ else: return False
+		#~ print(Valor)
+		#~ os.system("Pause")
+		
+		if not Valor == False:
+			
+			TipoRuta = Valor["TipoRuta"]
+			Pagina   = Valor["Pagina"]
+			Lista    = Valor["Lista"]
+			Robot    = Valor["Robot"]
+		
+			return True
+			
+		else: return False
 		
 	if len(Args) == 7:
 		
