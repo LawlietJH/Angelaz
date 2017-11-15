@@ -9,7 +9,8 @@
 #       ██║  ██║██║ ╚████║╚██████╔╝███████╗███████╗██║  ██║███████╗
 #       ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝
 #                                                         By: LawlietJH
-#                                                               v1.2.4
+#                                                               v1.2.5
+
 
 
 def Arg8(Args):
@@ -591,4 +592,89 @@ def Arg8(Args):
 	
 	return False
 
+
+
+def Arg3(Args):
+	
+	TipoRuta = ""
+	Val= {}
+	
+	if len(Args) == 3:
+		
+		if (Args[1].lower() == "-p" or Args[1].lower() == "--pagina"):
+			
+			Val["FullScan"]	= None
+			Val["TipoRuta"]	= None
+			Val["Pagina"]	= Args[2]
+			Val["Lista"]	= None
+			Val["Robot"]	= False
+			
+			return Val
+			
+		elif (Args[1].lower() == "-l" or Args[1].lower() == "--lista"):
+			
+			Val["FullScan"]	= None
+			Val["TipoRuta"]	= None
+			Val["Pagina"]	= None
+			Val["Lista"]	= Args[2]
+			Val["Robot"]	= False
+			
+			return Val
+			
+		elif (Args[1].lower() == "-t" or Args[1].lower() == "--tipo"):
+			
+			TipoRuta = Args[2].replace('"',"").strip()
+			
+			if  TipoRuta.lower() == "php"			or TipoRuta.lower() == "asp"			or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"		or TipoRuta.lower() == "asp php"		or TipoRuta.lower() == "html php"\
+			 or TipoRuta.lower() == "php html"		or TipoRuta.lower() == "asp html"		or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html"	or TipoRuta.lower() == "asp php html"	or TipoRuta.lower() == "html php asp"\
+			 or TipoRuta.lower() == "php html asp"	or TipoRuta.lower() == "asp html php"	or TipoRuta.lower() == "html asp php":
+				
+				Val["FullScan"]	= None
+				Val["TipoRuta"]	= TipoRuta
+				Val["Pagina"]	= None
+				Val["Lista"]	= None
+				Val["Robot"]	= False
+				
+				return Val
+			
+			else: return False
+			
+		elif ((Args[1].lower() == "-r" or Args[1].lower() == "--robots")   and (Args[2].lower() == "-c" or Args[2].lower() == "--completo"))\
+		  or ((Args[1].lower() == "-c" or Args[1].lower() == "--completo") and (Args[2].lower() == "-r" or Args[2].lower() == "--robots")):
+			
+			Val["FullScan"]	= True
+			Val["TipoRuta"]	= None
+			Val["Pagina"]	= None
+			Val["Lista"]	= None
+			Val["Robot"]	= True
+			
+			return Val
+			
+		else: return False
+
+
+
+#~ if __name__ == "__main__":
+	
+	#~ Pagina = None
+	#~ Robot = None
+	#~ Lista = None
+	#~ TipoRuta = None
+	
+	#~ Args = ['Angelaz.py', '-L', 'Paths.txt', '-P', 'xD.com', '-T', 'PHP', '-R']
+	
+	#~ Valor = Arg8(Args)
+	
+	#~ if not Valor == False:
+		
+		#~ Pagina   = Valor["Pagina"]
+		#~ Robot    = Valor["Robot"]
+		#~ Lista    = Valor["Lista"]
+		#~ TipoRuta = Valor["TipoRuta"]
+		
+		#~ print("\n\n", Valor)
+		
+	#~ else: print(False)
 
