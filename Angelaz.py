@@ -1539,9 +1539,6 @@ def Argumentos():
 		
 		Valor = Arguz.Arg3(Args)
 		
-		print(Valor)
-		os.system("Pause")
-		
 		if not Valor == False:
 			
 			FullScan = Valor["FullScan"]
