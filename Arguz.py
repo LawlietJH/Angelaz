@@ -9,7 +9,7 @@
 #       ██║  ██║██║ ╚████║╚██████╔╝███████╗███████╗██║  ██║███████╗
 #       ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝
 #                                                         By: LawlietJH
-#                                                               v1.2.6
+#                                                               v1.2.7
 
 
 
@@ -1340,7 +1340,6 @@ def Arg7(Args):
 			else: return False
 			
 		else: return False
-		
 
 
 
@@ -1388,7 +1387,7 @@ def Arg3(Args):
 				Val["Robot"]	= False
 				
 				return Val
-			
+				
 			else: return False
 			
 		elif ((Args[1].lower() == "-r" or Args[1].lower() == "--robots")   and (Args[2].lower() == "-c" or Args[2].lower() == "--completo"))\
@@ -1403,6 +1402,528 @@ def Arg3(Args):
 			return Val
 			
 		else: return False
+
+
+
+def Arg6(Args):
+	
+	TipoRuta = ""
+	Val= {}
+	
+	elif len(Args) == 6:
+		
+		# Seccion 1:
+		
+		# 01 -P -L -R	# 02 -P -R -L
+		# 03 -P -T -R	# 04 -P -R -T
+		# 05 -P -T -C	# 06 -P -C -T
+		
+		#01 Angelaz.py -P xD.com -L Paths.txt -R
+		if (Args[1].lower() == "-p" or Args[1].lower() == "--pagina")\
+		 and (Args[3].lower() == "-l" or Args[3].lower() == "--lista")\
+		 and (Args[5].lower() == "-r" or Args[5].lower() == "--robots"):
+			
+			Val["FullScan"]	= None
+			Val["TipoRuta"]	= None
+			Val["Pagina"]	= Args[3]
+			Val["Lista"]	= Args[4]
+			Val["Robot"]	= True
+			
+			return Val
+			
+		#02 Angelaz.py -P xD.com -R -L Paths.txt
+		elif (Args[1].lower() == "-p" or Args[1].lower() == "--pagina")\
+		 and (Args[3].lower() == "-r" or Args[3].lower() == "--robots")\
+		 and (Args[4].lower() == "-l" or Args[4].lower() == "--lista"):
+			
+			Val["FullScan"]	= None
+			Val["TipoRuta"]	= None
+			Val["Pagina"]	= Args[2]
+			Val["Lista"]	= Args[5]
+			Val["Robot"]	= True
+			
+			return Val
+			
+		#03 Angelaz.py -P xD.com -T PHP -R
+		elif (Args[1].lower() == "-p" or Args[1].lower() == "--pagina")\
+		 and (Args[3].lower() == "-t" or Args[3].lower() == "--tipo")\
+		 and (Args[5].lower() == "-r" or Args[5].lower() == "--robots"):
+			
+			TipoRuta = Args[4].replace('"',"")
+			
+			if  TipoRuta.lower() == "php"			or TipoRuta.lower() == "asp"			or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"		or TipoRuta.lower() == "asp php"		or TipoRuta.lower() == "html php"\
+			 or TipoRuta.lower() == "php html"		or TipoRuta.lower() == "asp html"		or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html"	or TipoRuta.lower() == "asp php html"	or TipoRuta.lower() == "html php asp"\
+			 or TipoRuta.lower() == "php html asp"	or TipoRuta.lower() == "asp html php"	or TipoRuta.lower() == "html asp php":
+				
+				Val["FullScan"]	= None
+				Val["TipoRuta"]	= TipoRuta
+				Val["Pagina"]	= Args[2]
+				Val["Lista"]	= None
+				Val["Robot"]	= True
+				
+				return Val
+				
+			else: return False
+			
+		#04 Angelaz.py -P xD.com -R -T PHP
+		elif (Args[1].lower() == "-p" or Args[1].lower() == "--pagina")\
+		 and (Args[3].lower() == "-r" or Args[3].lower() == "--robots")\
+		 and (Args[4].lower() == "-t" or Args[4].lower() == "--tipo"):
+			
+			TipoRuta = Args[5].replace('"',"")
+			
+			if  TipoRuta.lower() == "php"			or TipoRuta.lower() == "asp"			or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"		or TipoRuta.lower() == "asp php"		or TipoRuta.lower() == "html php"\
+			 or TipoRuta.lower() == "php html"		or TipoRuta.lower() == "asp html"		or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html"	or TipoRuta.lower() == "asp php html"	or TipoRuta.lower() == "html php asp"\
+			 or TipoRuta.lower() == "php html asp"	or TipoRuta.lower() == "asp html php"	or TipoRuta.lower() == "html asp php":
+				
+				Val["FullScan"]	= None
+				Val["TipoRuta"]	= TipoRuta
+				Val["Pagina"]	= Args[2]
+				Val["Lista"]	= None
+				Val["Robot"]	= True
+				
+				return Val
+				
+			else: return False
+			
+		#05 Angelaz.py -P xD.com -T PHP -C
+		elif (Args[1].lower() == "-p" or Args[1].lower() == "--pagina")\
+		 and (Args[3].lower() == "-t" or Args[3].lower() == "--tipo")\
+		 and (Args[5].lower() == "-c" or Args[5].lower() == "--completo"):
+			
+			TipoRuta = Args[4].replace('"',"")
+			
+			if  TipoRuta.lower() == "php"			or TipoRuta.lower() == "asp"			or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"		or TipoRuta.lower() == "asp php"		or TipoRuta.lower() == "html php"\
+			 or TipoRuta.lower() == "php html"		or TipoRuta.lower() == "asp html"		or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html"	or TipoRuta.lower() == "asp php html"	or TipoRuta.lower() == "html php asp"\
+			 or TipoRuta.lower() == "php html asp"	or TipoRuta.lower() == "asp html php"	or TipoRuta.lower() == "html asp php":
+				
+				Val["FullScan"]	= True
+				Val["TipoRuta"]	= TipoRuta
+				Val["Pagina"]	= Args[2]
+				Val["Lista"]	= None
+				Val["Robot"]	= False
+				
+				return Val
+				
+			else: return False
+			
+		#06 Angelaz.py -P xD.com -C -T PHP
+		elif (Args[1].lower() == "-p" or Args[1].lower() == "--pagina")\
+		 and (Args[3].lower() == "-c" or Args[3].lower() == "--completo")\
+		 and (Args[4].lower() == "-t" or Args[4].lower() == "--tipo"):
+			
+			TipoRuta = Args[5].replace('"',"")
+			
+			if  TipoRuta.lower() == "php"			or TipoRuta.lower() == "asp"			or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"		or TipoRuta.lower() == "asp php"		or TipoRuta.lower() == "html php"\
+			 or TipoRuta.lower() == "php html"		or TipoRuta.lower() == "asp html"		or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html"	or TipoRuta.lower() == "asp php html"	or TipoRuta.lower() == "html php asp"\
+			 or TipoRuta.lower() == "php html asp"	or TipoRuta.lower() == "asp html php"	or TipoRuta.lower() == "html asp php":
+				
+				Val["FullScan"]	= True
+				Val["TipoRuta"]	= TipoRuta
+				Val["Pagina"]	= Args[2]
+				Val["Lista"]	= None
+				Val["Robot"]	= False
+				
+				return Val
+				
+			else: return False
+			
+		# 07 -L -P -R	# 08 -L -R -P
+		# 09 -L -T -R	# 10 -L -R -T
+		
+		#07 Angelaz.py -L Paths.txt -P xD.com -R
+		elif (Args[1].lower() == "-l" or Args[1].lower() == "--lista")\
+		 and (Args[3].lower() == "-p" or Args[3].lower() == "--pagina")\
+		 and (Args[5].lower() == "-r" or Args[5].lower() == "--robots"):
+			
+			Val["FullScan"]	= None
+			Val["TipoRuta"]	= None
+			Val["Pagina"]	= Args[4]
+			Val["Lista"]	= Args[2]
+			Val["Robot"]	= True
+			
+			return Val
+			
+		#08 Angelaz.py -L Paths.txt -R -P xD.com
+		elif (Args[1].lower() == "-l" or Args[1].lower() == "--lista")\
+		 and (Args[3].lower() == "-r" or Args[3].lower() == "--robots")\
+		 and (Args[4].lower() == "-p" or Args[4].lower() == "--pagina"):
+			
+			Val["FullScan"]	= None
+			Val["TipoRuta"]	= None
+			Val["Pagina"]	= Args[5]
+			Val["Lista"]	= Args[2]
+			Val["Robot"]	= True
+			
+			return Val
+			
+		#09 Angelaz.py -L Paths.txt -T PHP -R
+		elif (Args[1].lower() == "-l" or Args[1].lower() == "--lista")\
+		 and (Args[3].lower() == "-t" or Args[3].lower() == "--tipo")\
+		 and (Args[5].lower() == "-r" or Args[5].lower() == "--robots"):
+			
+			TipoRuta = Args[4].replace('"',"")
+			
+			if  TipoRuta.lower() == "php"			or TipoRuta.lower() == "asp"			or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"		or TipoRuta.lower() == "asp php"		or TipoRuta.lower() == "html php"\
+			 or TipoRuta.lower() == "php html"		or TipoRuta.lower() == "asp html"		or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html"	or TipoRuta.lower() == "asp php html"	or TipoRuta.lower() == "html php asp"\
+			 or TipoRuta.lower() == "php html asp"	or TipoRuta.lower() == "asp html php"	or TipoRuta.lower() == "html asp php":
+				
+				Val["FullScan"]	= None
+				Val["TipoRuta"]	= TipoRuta
+				Val["Pagina"]	= None
+				Val["Lista"]	= Args[2]
+				Val["Robot"]	= True
+				
+				return Val
+				
+			else: return False
+			
+		#10 Angelaz.py -L Paths.txt -R -T PHP
+		elif (Args[1].lower() == "-l" or Args[1].lower() == "--lista")\
+		 and (Args[3].lower() == "-r" or Args[3].lower() == "--robots")\
+		 and (Args[4].lower() == "-t" or Args[4].lower() == "--tipo"):
+			
+			TipoRuta = Args[5].replace('"',"")
+			
+			if  TipoRuta.lower() == "php"			or TipoRuta.lower() == "asp"			or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"		or TipoRuta.lower() == "asp php"		or TipoRuta.lower() == "html php"\
+			 or TipoRuta.lower() == "php html"		or TipoRuta.lower() == "asp html"		or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html"	or TipoRuta.lower() == "asp php html"	or TipoRuta.lower() == "html php asp"\
+			 or TipoRuta.lower() == "php html asp"	or TipoRuta.lower() == "asp html php"	or TipoRuta.lower() == "html asp php":
+				
+				Val["FullScan"]	= None
+				Val["TipoRuta"]	= TipoRuta
+				Val["Pagina"]	= None
+				Val["Lista"]	= Args[2]
+				Val["Robot"]	= True
+				
+				return Val
+				
+			else: return False
+			
+		# 11 -R -P -L	# 12 -R -L -P
+		# 13 -R -P -T	# 14 -R -T -P
+		# 15 -R -L -T	# 16 -R -T -L
+		
+		#11 Angelaz.py -R -P xD.com -L Paths.txt
+		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots")\
+		 and (Args[2].lower() == "-p" or Args[2].lower() == "--pagina")\
+		 and (Args[4].lower() == "-l" or Args[4].lower() == "--lista"):
+			
+			Val["FullScan"]	= None
+			Val["TipoRuta"]	= None
+			Val["Pagina"]	= Args[3]
+			Val["Lista"]	= Args[5]
+			Val["Robot"]	= True
+			
+			return Val
+			
+		#12 Angelaz.py -R -L Paths.txt -P xD.com
+		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots")\
+		 and (Args[2].lower() == "-l" or Args[2].lower() == "--lista")\
+		 and (Args[4].lower() == "-p" or Args[4].lower() == "--pagina"):
+			
+			Val["FullScan"]	= None
+			Val["TipoRuta"]	= None
+			Val["Pagina"]	= Args[5]
+			Val["Lista"]	= Args[3]
+			Val["Robot"]	= True
+			
+			return Val
+			
+		#13 Angelaz.py -R -P xD.com -T PHP
+		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots")\
+		 and (Args[2].lower() == "-p" or Args[2].lower() == "--pagina")\
+		 and (Args[4].lower() == "-t" or Args[4].lower() == "--tipo"):
+			
+			TipoRuta = Args[5].replace('"',"")
+			
+			if  TipoRuta.lower() == "php"			or TipoRuta.lower() == "asp"			or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"		or TipoRuta.lower() == "asp php"		or TipoRuta.lower() == "html php"\
+			 or TipoRuta.lower() == "php html"		or TipoRuta.lower() == "asp html"		or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html"	or TipoRuta.lower() == "asp php html"	or TipoRuta.lower() == "html php asp"\
+			 or TipoRuta.lower() == "php html asp"	or TipoRuta.lower() == "asp html php"	or TipoRuta.lower() == "html asp php":
+				
+				Val["FullScan"]	= None
+				Val["TipoRuta"]	= TipoRuta
+				Val["Pagina"]	= Args[3]
+				Val["Lista"]	= None
+				Val["Robot"]	= True
+				
+				return Val
+				
+			else: return False
+			
+		#14 Angelaz.py -R -T PHP -P xD.com
+		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots")\
+		 and (Args[2].lower() == "-t" or Args[2].lower() == "--tipo")\
+		 and (Args[4].lower() == "-p" or Args[4].lower() == "--pagina"):
+			
+			TipoRuta = Args[3].replace('"',"")
+			
+			if  TipoRuta.lower() == "php"			or TipoRuta.lower() == "asp"			or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"		or TipoRuta.lower() == "asp php"		or TipoRuta.lower() == "html php"\
+			 or TipoRuta.lower() == "php html"		or TipoRuta.lower() == "asp html"		or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html"	or TipoRuta.lower() == "asp php html"	or TipoRuta.lower() == "html php asp"\
+			 or TipoRuta.lower() == "php html asp"	or TipoRuta.lower() == "asp html php"	or TipoRuta.lower() == "html asp php":
+				
+				Val["FullScan"]	= None
+				Val["TipoRuta"]	= TipoRuta
+				Val["Pagina"]	= Args[5]
+				Val["Lista"]	= None
+				Val["Robot"]	= True
+			
+				return Val
+				
+			else: return False
+			
+		#15 Angelaz.py -R -L Paths.txt -T PHP
+		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots")\
+		 and (Args[2].lower() == "-l" or Args[2].lower() == "--lista")\
+		 and (Args[4].lower() == "-t" or Args[4].lower() == "--tipo"):
+			
+			TipoRuta = Args[5].replace('"',"")
+			
+			if  TipoRuta.lower() == "php"			or TipoRuta.lower() == "asp"			or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"		or TipoRuta.lower() == "asp php"		or TipoRuta.lower() == "html php"\
+			 or TipoRuta.lower() == "php html"		or TipoRuta.lower() == "asp html"		or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html"	or TipoRuta.lower() == "asp php html"	or TipoRuta.lower() == "html php asp"\
+			 or TipoRuta.lower() == "php html asp"	or TipoRuta.lower() == "asp html php"	or TipoRuta.lower() == "html asp php":
+				
+				Val["FullScan"]	= None
+				Val["TipoRuta"]	= TipoRuta
+				Val["Pagina"]	= None
+				Val["Lista"]	= Args[3]
+				Val["Robot"]	= True
+				
+				return Val
+				
+			else: return False
+			
+		#16 Angelaz.py -R -T PHP -L Paths.txt
+		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots")\
+		 and (Args[2].lower() == "-t" or Args[2].lower() == "--tipo")\
+		 and (Args[4].lower() == "-l" or Args[4].lower() == "--lista"):
+			
+			TipoRuta = Args[3].replace('"',"")
+			
+			if  TipoRuta.lower() == "php"			or TipoRuta.lower() == "asp"			or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"		or TipoRuta.lower() == "asp php"		or TipoRuta.lower() == "html php"\
+			 or TipoRuta.lower() == "php html"		or TipoRuta.lower() == "asp html"		or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html"	or TipoRuta.lower() == "asp php html"	or TipoRuta.lower() == "html php asp"\
+			 or TipoRuta.lower() == "php html asp"	or TipoRuta.lower() == "asp html php"	or TipoRuta.lower() == "html asp php":
+				
+				Val["FullScan"]	= None
+				Val["TipoRuta"]	= TipoRuta
+				Val["Pagina"]	= None
+				Val["Lista"]	= Args[5]
+				Val["Robot"]	= True
+			
+				return Val
+				
+			else: return False
+			
+		# 17 -T -P -R	# 18 -T -R -P
+		# 19 -T -P -C	# 20 -T -C -P
+		# 21 -T -L -R	# 22 -T -R -L
+		# 23 -T -L -C	# 24 -T -C -L
+		
+		#17 Angelaz.py -T PHP -P xD.com -R
+		elif (Args[1].lower() == "-t" or Args[1].lower() == "--tipo")\
+		 and (Args[3].lower() == "-p" or Args[3].lower() == "--pagina")\
+		 and (Args[5].lower() == "-r" or Args[5].lower() == "--robots"):
+			
+			TipoRuta = Args[2].replace('"',"")
+			
+			if  TipoRuta.lower() == "php"			or TipoRuta.lower() == "asp"			or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"		or TipoRuta.lower() == "asp php"		or TipoRuta.lower() == "html php"\
+			 or TipoRuta.lower() == "php html"		or TipoRuta.lower() == "asp html"		or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html"	or TipoRuta.lower() == "asp php html"	or TipoRuta.lower() == "html php asp"\
+			 or TipoRuta.lower() == "php html asp"	or TipoRuta.lower() == "asp html php"	or TipoRuta.lower() == "html asp php":
+				
+				Val["FullScan"]	= None
+				Val["TipoRuta"]	= TipoRuta
+				Val["Pagina"]	= Args[4]
+				Val["Lista"]	= None
+				Val["Robot"]	= True
+				
+				return Val
+				
+			else: return False
+			
+		#18 Angelaz.py -T PHP -R -P xD.com
+		elif (Args[1].lower() == "-t" or Args[1].lower() == "--tipo")\
+		 and (Args[3].lower() == "-r" or Args[3].lower() == "--robots")\
+		 and (Args[4].lower() == "-p" or Args[4].lower() == "--pagina"):
+			
+			TipoRuta = Args[2].replace('"',"")
+			
+			if  TipoRuta.lower() == "php"			or TipoRuta.lower() == "asp"			or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"		or TipoRuta.lower() == "asp php"		or TipoRuta.lower() == "html php"\
+			 or TipoRuta.lower() == "php html"		or TipoRuta.lower() == "asp html"		or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html"	or TipoRuta.lower() == "asp php html"	or TipoRuta.lower() == "html php asp"\
+			 or TipoRuta.lower() == "php html asp"	or TipoRuta.lower() == "asp html php"	or TipoRuta.lower() == "html asp php":
+				
+				Val["FullScan"]	= None
+				Val["TipoRuta"]	= TipoRuta
+				Val["Pagina"]	= Args[5]
+				Val["Lista"]	= None
+				Val["Robot"]	= True
+				
+				return Val
+				
+			else: return False
+			
+		#19 Angelaz.py -T PHP -P xD.com -C
+		elif (Args[1].lower() == "-t" or Args[1].lower() == "--tipo")\
+		 and (Args[3].lower() == "-p" or Args[3].lower() == "--pagina")\
+		 and (Args[5].lower() == "-c" or Args[5].lower() == "--completo"):
+			
+			TipoRuta = Args[2].replace('"',"")
+			
+			if  TipoRuta.lower() == "php"			or TipoRuta.lower() == "asp"			or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"		or TipoRuta.lower() == "asp php"		or TipoRuta.lower() == "html php"\
+			 or TipoRuta.lower() == "php html"		or TipoRuta.lower() == "asp html"		or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html"	or TipoRuta.lower() == "asp php html"	or TipoRuta.lower() == "html php asp"\
+			 or TipoRuta.lower() == "php html asp"	or TipoRuta.lower() == "asp html php"	or TipoRuta.lower() == "html asp php":
+				
+				Val["FullScan"]	= True
+				Val["TipoRuta"]	= TipoRuta
+				Val["Pagina"]	= Args[4]
+				Val["Lista"]	= None
+				Val["Robot"]	= False
+				
+				return Val
+				
+			else: return False
+			
+		#20 Angelaz.py -T PHP -C -P xD.com
+		elif (Args[1].lower() == "-t" or Args[1].lower() == "--tipo")\
+		 and (Args[3].lower() == "-c" or Args[3].lower() == "--completo")\
+		 and (Args[4].lower() == "-p" or Args[4].lower() == "--pagina"):
+			
+			TipoRuta = Args[2].replace('"',"")
+			
+			if  TipoRuta.lower() == "php"			or TipoRuta.lower() == "asp"			or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"		or TipoRuta.lower() == "asp php"		or TipoRuta.lower() == "html php"\
+			 or TipoRuta.lower() == "php html"		or TipoRuta.lower() == "asp html"		or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html"	or TipoRuta.lower() == "asp php html"	or TipoRuta.lower() == "html php asp"\
+			 or TipoRuta.lower() == "php html asp"	or TipoRuta.lower() == "asp html php"	or TipoRuta.lower() == "html asp php":
+				
+				Val["FullScan"]	= True
+				Val["TipoRuta"]	= TipoRuta
+				Val["Pagina"]	= Args[5]
+				Val["Lista"]	= None
+				Val["Robot"]	= False
+				
+				return Val
+				
+			else: return False
+			
+		#21 Angelaz.py -T PHP -L Paths.txt -R
+		elif (Args[1].lower() == "-t" or Args[1].lower() == "--tipo")\
+		 and (Args[3].lower() == "-l" or Args[3].lower() == "--lista")\
+		 and (Args[5].lower() == "-r" or Args[5].lower() == "--robots"):
+			
+			TipoRuta = Args[2].replace('"',"")
+			
+			if  TipoRuta.lower() == "php"			or TipoRuta.lower() == "asp"			or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"		or TipoRuta.lower() == "asp php"		or TipoRuta.lower() == "html php"\
+			 or TipoRuta.lower() == "php html"		or TipoRuta.lower() == "asp html"		or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html"	or TipoRuta.lower() == "asp php html"	or TipoRuta.lower() == "html php asp"\
+			 or TipoRuta.lower() == "php html asp"	or TipoRuta.lower() == "asp html php"	or TipoRuta.lower() == "html asp php":
+				
+				Val["FullScan"]	= None
+				Val["TipoRuta"]	= TipoRuta
+				Val["Pagina"]	= None
+				Val["Lista"]	= Args[4]
+				Val["Robot"]	= True
+				
+				return Val
+				
+			else: return False
+			
+		#22 Angelaz.py -T PHP -R -L Paths.txt
+		elif (Args[1].lower() == "-t" or Args[1].lower() == "--tipo")\
+		 and (Args[3].lower() == "-r" or Args[3].lower() == "--robots")\
+		 and (Args[4].lower() == "-l" or Args[4].lower() == "--lista"):
+			
+			TipoRuta = Args[2].replace('"',"")
+			
+			if  TipoRuta.lower() == "php"			or TipoRuta.lower() == "asp"			or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"		or TipoRuta.lower() == "asp php"		or TipoRuta.lower() == "html php"\
+			 or TipoRuta.lower() == "php html"		or TipoRuta.lower() == "asp html"		or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html"	or TipoRuta.lower() == "asp php html"	or TipoRuta.lower() == "html php asp"\
+			 or TipoRuta.lower() == "php html asp"	or TipoRuta.lower() == "asp html php"	or TipoRuta.lower() == "html asp php":
+				
+				Val["FullScan"]	= None
+				Val["TipoRuta"]	= TipoRuta
+				Val["Pagina"]	= None
+				Val["Lista"]	= Args[5]
+				Val["Robot"]	= True
+				
+				return Val
+				
+			else: return False
+			
+		#23 Angelaz.py -T PHP -L Paths.txt -C
+		elif (Args[1].lower() == "-t" or Args[1].lower() == "--tipo")\
+		 and (Args[3].lower() == "-l" or Args[3].lower() == "--lista")\
+		 and (Args[5].lower() == "-c" or Args[5].lower() == "--completo"):
+			
+			TipoRuta = Args[2].replace('"',"")
+			
+			if  TipoRuta.lower() == "php"			or TipoRuta.lower() == "asp"			or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"		or TipoRuta.lower() == "asp php"		or TipoRuta.lower() == "html php"\
+			 or TipoRuta.lower() == "php html"		or TipoRuta.lower() == "asp html"		or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html"	or TipoRuta.lower() == "asp php html"	or TipoRuta.lower() == "html php asp"\
+			 or TipoRuta.lower() == "php html asp"	or TipoRuta.lower() == "asp html php"	or TipoRuta.lower() == "html asp php":
+				
+				Val["FullScan"]	= True
+				Val["TipoRuta"]	= TipoRuta
+				Val["Pagina"]	= None
+				Val["Lista"]	= Args[4]
+				Val["Robot"]	= False
+				
+				return Val
+				
+			else: return False
+			
+		#24 Angelaz.py -T PHP -C -L Paths.txt
+		elif (Args[1].lower() == "-t" or Args[1].lower() == "--tipo")\
+		 and (Args[3].lower() == "-c" or Args[3].lower() == "--completo")\
+		 and (Args[4].lower() == "-l" or Args[4].lower() == "--lista"):
+			
+			TipoRuta = Args[2].replace('"',"")
+			
+			if  TipoRuta.lower() == "php"			or TipoRuta.lower() == "asp"			or TipoRuta.lower() == "html"\
+			 or TipoRuta.lower() == "php asp"		or TipoRuta.lower() == "asp php"		or TipoRuta.lower() == "html php"\
+			 or TipoRuta.lower() == "php html"		or TipoRuta.lower() == "asp html"		or TipoRuta.lower() == "html asp"\
+			 or TipoRuta.lower() == "php asp html"	or TipoRuta.lower() == "asp php html"	or TipoRuta.lower() == "html php asp"\
+			 or TipoRuta.lower() == "php html asp"	or TipoRuta.lower() == "asp html php"	or TipoRuta.lower() == "html asp php":
+				
+				Val["FullScan"]	= True
+				Val["TipoRuta"]	= TipoRuta
+				Val["Pagina"]	= None
+				Val["Lista"]	= Args[5]
+				Val["Robot"]	= False
+				
+				return Val
+				
+			else: return False
+			
+		else: return False
+		
 
 
 
