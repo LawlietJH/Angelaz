@@ -123,7 +123,21 @@ def Argumentos():
 		else: return False
 		
 	elif len(Args) == 6:
-		pass
+		
+		Valor = Arguz.Arg6(Args)
+		
+		if not Valor == False:
+			
+			FullScan = Valor["FullScan"]
+			TipoRuta = Valor["TipoRuta"]
+			Pagina   = Valor["Pagina"]
+			Lista    = Valor["Lista"]
+			Robot    = Valor["Robot"]
+			
+			return True
+			
+		else: return False
+		
 	elif len(Args) == 5:
 		
 		if   (Args[1].lower() == "-p" or Args[1].lower() == "--pagina")\
