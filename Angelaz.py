@@ -9,7 +9,7 @@
 #       ██║  ██║██║ ╚████║╚██████╔╝███████╗███████╗██║  ██║███████╗
 #       ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝
 #                                                         By: LawlietJH
-#                                                               v1.2.6
+#                                                               v1.2.7
 
 import threading
 import datetime
@@ -25,7 +25,7 @@ import os
 #~ =====================================================================
 
 PythonVer = sys.version[0]
-Version = "v.1.2.6"
+Version = "v.1.2.7"
 
 # Banners: http://patorjk.com/software/taag/
 
@@ -110,9 +110,6 @@ def Argumentos():
 		
 		Valor = Arguz.Arg7(Args)
 		
-		print(Valor)
-		os.system("Pause")
-		
 		if not Valor == False:
 			
 			FullScan = Valor["FullScan"]
@@ -126,264 +123,7 @@ def Argumentos():
 		else: return False
 		
 	elif len(Args) == 6:
-		
-		if   (Args[1].lower() == "-r" or Args[1].lower() == "--robots")\
-		 and (Args[2].lower() == "-p" or Args[2].lower() == "--pagina")\
-		 and (Args[4].lower() == "-l" or Args[4].lower() == "--lista"):
-			
-			Lista = Args[5]
-			Pagina = Args[3]
-			Robot = True
-			return True
-			
-		elif (Args[1].lower() == "-r" or Args[1].lower() == "--robots")\
-		 and (Args[2].lower() == "-l" or Args[2].lower() == "--lista")\
-		 and (Args[4].lower() == "-p" or Args[4].lower() == "--pagina"):
-			
-			Lista = Args[3]
-			Pagina = Args[5]
-			Robot = True
-			return True
-			
-		elif (Args[1].lower() == "-p" or Args[1].lower() == "--pagina")\
-		 and (Args[3].lower() == "-r" or Args[3].lower() == "--robots")\
-		 and (Args[4].lower() == "-l" or Args[4].lower() == "--lista"):
-			
-			Lista = Args[5]
-			Pagina = Args[2]
-			Robot = True
-			return True
-			
-		elif (Args[1].lower() == "-p" or Args[1].lower() == "--pagina")\
-		 and (Args[3].lower() == "-l" or Args[3].lower() == "--lista")\
-		 and (Args[5].lower() == "-r" or Args[5].lower() == "--robots"):
-			
-			Lista = Args[4]
-			Pagina = Args[2]
-			Robot = True
-			return True
-			
-		elif (Args[1].lower() == "-l" or Args[1].lower() == "--lista")\
-		 and (Args[3].lower() == "-r" or Args[3].lower() == "--robots")\
-		 and (Args[4].lower() == "-p" or Args[4].lower() == "--pagina"):
-			
-			Lista = Args[2]
-			Pagina = Args[5]
-			Robot = True
-			return True
-			
-		elif (Args[1].lower() == "-l" or Args[1].lower() == "--lista")\
-		 and (Args[3].lower() == "-p" or Args[3].lower() == "--pagina")\
-		 and (Args[5].lower() == "-r" or Args[5].lower() == "--robots"):
-			
-			Lista = Args[2]
-			Pagina = Args[4]
-			Robot = True
-			return True
-			
-		elif (Args[1].lower() == "-t" or Args[1].lower() == "--tipo")\
-		 and (Args[3].lower() == "-l" or Args[3].lower() == "--lista")\
-		 and (Args[5].lower() == "-r" or Args[5].lower() == "--robots"):
-			
-			TipoRuta = Args[2].replace('"',"")
-				
-			if  TipoRuta.lower() == "php"\
-			 or TipoRuta.lower() == "asp"\
-			 or TipoRuta.lower() == "html"\
-			 or TipoRuta.lower() == "php asp"  or TipoRuta.lower() == "php html"\
-			 or TipoRuta.lower() == "asp php"  or TipoRuta.lower() == "asp html"\
-			 or TipoRuta.lower() == "html php" or TipoRuta.lower() == "html asp"\
-			 or TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
-			 or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php"\
-			 or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php":
-				
-				Lista = Args[4]
-				Robot = True
-				return True
-			
-			else: return False
-			
-		elif (Args[1].lower() == "-t" or Args[1].lower() == "--tipo")\
-		 and (Args[3].lower() == "-p" or Args[3].lower() == "--pagina")\
-		 and (Args[5].lower() == "-r" or Args[5].lower() == "--robots"):
-			
-			TipoRuta = Args[2].replace('"',"")
-				
-			if  TipoRuta.lower() == "php"\
-			 or TipoRuta.lower() == "asp"\
-			 or TipoRuta.lower() == "html"\
-			 or TipoRuta.lower() == "php asp"  or TipoRuta.lower() == "php html"\
-			 or TipoRuta.lower() == "asp php"  or TipoRuta.lower() == "asp html"\
-			 or TipoRuta.lower() == "html php" or TipoRuta.lower() == "html asp"\
-			 or TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
-			 or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php"\
-			 or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php":
-				
-				Pagina = Args[4]
-				Robot = True
-				return True
-			
-			else: return False
-			
-		elif (Args[1].lower() == "-t" or Args[1].lower() == "--tipo")\
-		 and (Args[3].lower() == "-p" or Args[3].lower() == "--pagina")\
-		 and (Args[5].lower() == "-c" or Args[5].lower() == "--completo"):
-			
-			TipoRuta = Args[2].replace('"',"")
-				
-			if  TipoRuta.lower() == "php"\
-			 or TipoRuta.lower() == "asp"\
-			 or TipoRuta.lower() == "html"\
-			 or TipoRuta.lower() == "php asp"  or TipoRuta.lower() == "php html"\
-			 or TipoRuta.lower() == "asp php"  or TipoRuta.lower() == "asp html"\
-			 or TipoRuta.lower() == "html php" or TipoRuta.lower() == "html asp"\
-			 or TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
-			 or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php"\
-			 or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php":
-				
-				Pagina = Args[4]
-				FullScan = True
-				Robot = False
-				return True
-			
-			else: return False
-			
-		elif (Args[1].lower() == "-l" or Args[1].lower() == "--lista")\
-		 and (Args[3].lower() == "-t" or Args[3].lower() == "--tipo")\
-		 and (Args[5].lower() == "-r" or Args[5].lower() == "--robots"):
-			
-			TipoRuta = Args[4].replace('"',"")
-				
-			if  TipoRuta.lower() == "php"\
-			 or TipoRuta.lower() == "asp"\
-			 or TipoRuta.lower() == "html"\
-			 or TipoRuta.lower() == "php asp"  or TipoRuta.lower() == "php html"\
-			 or TipoRuta.lower() == "asp php"  or TipoRuta.lower() == "asp html"\
-			 or TipoRuta.lower() == "html php" or TipoRuta.lower() == "html asp"\
-			 or TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
-			 or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php"\
-			 or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php":
-				
-				Lista = Args[2]
-				Robot = True
-				return True
-			
-			else: return False
-			
-		elif (Args[1].lower() == "-p" or Args[1].lower() == "--pagina")\
-		 and (Args[3].lower() == "-t" or Args[3].lower() == "--tipo")\
-		 and (Args[5].lower() == "-r" or Args[5].lower() == "--robots"):
-			
-			TipoRuta = Args[4].replace('"',"")
-				
-			if  TipoRuta.lower() == "php"\
-			 or TipoRuta.lower() == "asp"\
-			 or TipoRuta.lower() == "html"\
-			 or TipoRuta.lower() == "php asp"  or TipoRuta.lower() == "php html"\
-			 or TipoRuta.lower() == "asp php"  or TipoRuta.lower() == "asp html"\
-			 or TipoRuta.lower() == "html php" or TipoRuta.lower() == "html asp"\
-			 or TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
-			 or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php"\
-			 or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php":
-				
-				Pagina = Args[2]
-				Robot = True
-				return True
-			
-			else: return False
-			
-		elif (Args[1].lower() == "-p" or Args[1].lower() == "--pagina")\
-		 and (Args[3].lower() == "-t" or Args[3].lower() == "--tipo")\
-		 and (Args[5].lower() == "-c" or Args[5].lower() == "--completo"):
-			
-			TipoRuta = Args[4].replace('"',"")
-				
-			if  TipoRuta.lower() == "php"\
-			 or TipoRuta.lower() == "asp"\
-			 or TipoRuta.lower() == "html"\
-			 or TipoRuta.lower() == "php asp"  or TipoRuta.lower() == "php html"\
-			 or TipoRuta.lower() == "asp php"  or TipoRuta.lower() == "asp html"\
-			 or TipoRuta.lower() == "html php" or TipoRuta.lower() == "html asp"\
-			 or TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
-			 or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php"\
-			 or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php":
-				
-				Pagina = Args[2]
-				FullScan = True
-				Robot = False
-				return True
-			
-			else: return False
-			
-		elif (Args[1].lower() == "-l" or Args[1].lower() == "--lista")\
-		 and (Args[3].lower() == "-r" or Args[3].lower() == "--robots")\
-		 and (Args[4].lower() == "-t" or Args[4].lower() == "--tipo"):
-			
-			TipoRuta = Args[5].replace('"',"")
-				
-			if  TipoRuta.lower() == "php"\
-			 or TipoRuta.lower() == "asp"\
-			 or TipoRuta.lower() == "html"\
-			 or TipoRuta.lower() == "php asp"  or TipoRuta.lower() == "php html"\
-			 or TipoRuta.lower() == "asp php"  or TipoRuta.lower() == "asp html"\
-			 or TipoRuta.lower() == "html php" or TipoRuta.lower() == "html asp"\
-			 or TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
-			 or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php"\
-			 or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php":
-				
-				Lista = Args[2]
-				Robot = True
-				return True
-			
-			else: return False
-			
-		elif (Args[1].lower() == "-p" or Args[1].lower() == "--pagina")\
-		 and (Args[3].lower() == "-r" or Args[3].lower() == "--robots")\
-		 and (Args[4].lower() == "-t" or Args[4].lower() == "--tipo"):
-			
-			TipoRuta = Args[5].replace('"',"")
-				
-			if  TipoRuta.lower() == "php"\
-			 or TipoRuta.lower() == "asp"\
-			 or TipoRuta.lower() == "html"\
-			 or TipoRuta.lower() == "php asp"  or TipoRuta.lower() == "php html"\
-			 or TipoRuta.lower() == "asp php"  or TipoRuta.lower() == "asp html"\
-			 or TipoRuta.lower() == "html php" or TipoRuta.lower() == "html asp"\
-			 or TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
-			 or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php"\
-			 or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php":
-				
-				Pagina = Args[2]
-				Robot = True
-				return True
-			
-			else: return False
-			
-		elif (Args[1].lower() == "-p" or Args[1].lower() == "--pagina")\
-		 and (Args[3].lower() == "-c" or Args[3].lower() == "--completo")\
-		 and (Args[4].lower() == "-t" or Args[4].lower() == "--tipo"):
-			
-			TipoRuta = Args[5].replace('"',"")
-				
-			if  TipoRuta.lower() == "php"\
-			 or TipoRuta.lower() == "asp"\
-			 or TipoRuta.lower() == "html"\
-			 or TipoRuta.lower() == "php asp"  or TipoRuta.lower() == "php html"\
-			 or TipoRuta.lower() == "asp php"  or TipoRuta.lower() == "asp html"\
-			 or TipoRuta.lower() == "html php" or TipoRuta.lower() == "html asp"\
-			 or TipoRuta.lower() == "php asp html" or TipoRuta.lower() == "php html asp"\
-			 or TipoRuta.lower() == "asp php html" or TipoRuta.lower() == "asp html php"\
-			 or TipoRuta.lower() == "html php asp" or TipoRuta.lower() == "html asp php":
-				
-				Pagina = Args[2]
-				FullScan = True
-				Robot = False
-				return True
-			
-			else: return False
-			
-		else: return False
-		
+		pass
 	elif len(Args) == 5:
 		
 		if   (Args[1].lower() == "-p" or Args[1].lower() == "--pagina")\
