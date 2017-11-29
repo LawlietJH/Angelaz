@@ -1410,7 +1410,7 @@ def Arg6(Args):
 	TipoRuta = ""
 	Val= {}
 	
-	elif len(Args) == 6:
+	if len(Args) == 6:
 		
 		# Seccion 1:
 		
