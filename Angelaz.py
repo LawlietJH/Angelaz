@@ -9,7 +9,7 @@
 #       ██║  ██║██║ ╚████║╚██████╔╝███████╗███████╗██║  ██║███████╗
 #       ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝
 #                                                         By: LawlietJH
-#                                                               v1.2.7
+#                                                               v1.2.8
 
 import threading
 import datetime
@@ -25,7 +25,7 @@ import os
 #~ =====================================================================
 
 PythonVer = sys.version[0]
-Version = "v.1.2.7"
+Version = "v.1.2.8"
 
 # Banners: http://patorjk.com/software/taag/
 
@@ -842,7 +842,7 @@ RutasFast = [
  'panel-administracion/index.html', 'panel-administracion/index.php', 'panel-administracion/login.html', 'panel-administracion/login.php', 'rcjakar/admin/login.php', 'siteadmin/index.php', 'siteadmin/login.html', 'siteadmin/login.php', 'user.html', 'user.php', 'webadmin.html', 'webadmin.php', 'webadmin/', 'webadmin/admin.html', 'webadmin/admin.php', 'webadmin/index.html', 'webadmin/index.php', 'webadmin/login.html', 'webadmin/login.php', 'wp-login.php'
 ]
 
-# 483 Rutas.
+# 483 Rutas + 14 = 497.		Agregadas a partir de v1.2.8: '/admin1/index.php', '/International/AdminPanel/Login.aspx', '/SuperAdmin/', '/adm', '/admin/account.htmladmin/index.php', '/admincp', '/admincp.php', '/app/admin/', '/login', '/logins', '/loign.php', '/yonet/', '/yonetici/', '/yonetim/'
 RutasFull = [
  '/ADMIN/', '/ADMIN/login.html', '/ADMIN/login.php', '/ADMON/', '/Admin/', '/Admin/private/', '/AdminTools/', '/AdminWeb/', '/Database_Administration/', '/Indy_admin/', '/LiveUser_Admin/', '/Lotus_Domino_Admin/', '/Server.asp', '/Server.html', '/Server.php', '/Server/', '/ServerAdministrator/', '/Super-Admin/', '/SysAdmin/', '/SysAdmin2/',
  '/UserLogin/', '/WebAdmin/', '/_adm/', '/_adm_/', '/_admin/', '/_admin_/', '/_administrator/', '/_administrator_/', '/acceso.asp', '/acceso.php', '/access.php', '/access/', '/account.asp', '/account.html', '/account.php', '/account/', '/acct_login/', '/adm.asp', '/adm.html', '/adm.php',
@@ -852,7 +852,7 @@ RutasFull = [
  '/admin/controlpanel.html', '/admin/controlpanel.php', '/admin/cp.asp', '/admin/cp.html', '/admin/cp.php', '/admin/cpanel.php', '/admin/dash.php', '/admin/dashboard.php', '/admin/dashboard/index.php', '/admin/dashbord.php', '/admin/default.php', '/admin/enter.php', '/admin/event.php', '/admin/form.php', '/admin/gallery.php', '/admin/headline.php', '/admin/home.asp', '/admin/home.html', '/admin/home.php', '/admin/index-digital.php',
  '/admin/index.asp', '/admin/index.html', '/admin/index.php', '/admin/index_ref.php', '/admin/initialadmin.php', '/admin/leads.php','/admin/list_gallery.php', '/admin/log.php', '/admin/login', '/admin/login-home.php', '/admin/login.asp', '/admin/login.html', '/admin/login.php', '/admin/login_success.php', '/admin/loginsuccess.php', '/admin/main.php/', '/admin/main_page.php', '/admin/manageImages.php', '/admin/manage_team.php', '/admin/member_home.php',
  '/admin/moderator.php', '/admin/my_account.php', '/admin/myaccount.php', '/admin/overview.php', '/admin/page_management.php', '/admin/pages/home_admin.php', '/admin/product.php', '/admin/products.php', '/admin/save.php', '/admin/slider.php', '/admin/specializations.php', '/admin/uhome.html', '/admin/upload.php', '/admin/userpage.php', '/admin/viewblog.php', '/admin/viewmembers.php', '/admin/voucher.php', '/admin/welcome.php', '/admin/welcomepage.php', '/admin1.asp',
- '/admin1.html', '/admin1.php', '/admin1/', '/admin2.asp', '/admin2.html', '/admin2.php', '/admin2/', '/admin2/index.asp', '/admin2/index.php', '/admin2/index/', '/admin2/login.asp', '/admin2/login.php', '/admin3/', '/admin4/', '/admin4_account/', '/admin4_colon/', '/admin5/', '/adminLogin.asp', '/adminLogin.html', '/adminLogin.php',
+ '/admin1.html', '/admin1.php', '/admin1/' ,'/admin1/index.php', '/admin2.asp', '/admin2.html', '/admin2.php', '/admin2/', '/admin2/index.asp', '/admin2/index.php', '/admin2/index/', '/admin2/login.asp', '/admin2/login.php', '/admin3/', '/admin4/', '/admin4_account/', '/admin4_colon/', '/admin5/', '/adminLogin.asp', '/adminLogin.html', '/adminLogin.php',
  '/adminLogin/', '/admin_area/', '/admin_area/admin.asp', '/admin_area/admin.html', '/admin_area/admin.php', '/admin_area/index.asp', '/admin_area/index.html', '/admin_area/index.php', '/admin_area/login.asp', '/admin_area/login.html', '/admin_area/login.php', '/admin_home.php', '/admin_login.asp', '/admin_login.html', '/admin_login.php', '/admin_login.php]', '/admin_main.html', '/admin_tool/', '/adminarea/', '/adminarea/admin.asp',
  '/adminarea/admin.html', '/adminarea/admin.php', '/adminarea/index.asp', '/adminarea/index.html', '/adminarea/index.php', '/adminarea/login.asp', '/adminarea/login.html', '/adminarea/login.php', '/admincontrol.asp', '/admincontrol.html', '/admincontrol.php', '/admincontrol.php/', '/admincontrol/login.asp', '/admincontrol/login.html', '/admincontrol/login.php', '/admincp/index.asp', '/admincp/index.html', '/admincp/login.asp', '/administer/', '/administr8.asp',
  '/administr8.html', '/administr8.php', '/administr8/', '/administracion.php', '/administrador/', '/administratie/', '/administration.html', '/administration.php', '/administration/', '/administrator', '/administrator.asp', '/administrator.html', '/administrator.php', '/administrator/', '/administrator/account.asp', '/administrator/account.html', '/administrator/account.php', '/administrator/index.asp', '/administrator/index.html', '/administrator/index.php',
@@ -868,7 +868,7 @@ RutasFull = [
  '/siteadmin/index.asp', '/siteadmin/index.php', '/siteadmin/login.asp', '/siteadmin/login.html', '/siteadmin/login.php', '/smblogin/', '/sql-admin/', '/ss_vms_admin_sm/', '/sshadmin/', '/staradmin/', '/sub-login/', '/support_login/', '/sys-admin/', '/sysadmin.asp', '/sysadmin.html', '/sysadmin.php', '/sysadmin/', '/sysadmins/', '/system-administration/', '/system_administration/',
  '/typo3/', '/ur-admin.asp', '/ur-admin.html', '/ur-admin.php', '/ur-admin/', '/user.asp', '/user.html', '/user.php', '/useradmin/', '/usuario/', '/usuarios/', '/usuarios//', '/usuarios/login.php', '/utility_login/', '/vadmind/', '/vmailadmin/', '/webadmin.asp', '/webadmin.html', '/webadmin.php', '/webadmin/',
  '/webadmin/admin.asp', '/webadmin/admin.html', '/webadmin/admin.php', '/webadmin/index.asp', '/webadmin/index.html', '/webadmin/index.php', '/webadmin/login.asp', '/webadmin/login.html', '/webadmin/login.php', '/webmaster/', '/websvn/', '/wizmysqladmin/', '/wp-admin/', '/wp-login.php', '/wp-login/', '/wplogin/', '/xlogin/', '/yonetici.asp', '/yonetici.html', '/yonetici.php',
- '/yonetim.asp', '/yonetim.html', '/yonetim.php'
+ '/yonetim.asp', '/yonetim.html', '/yonetim.php', '/International/AdminPanel/Login.aspx', '/SuperAdmin/', '/adm', '/admin/account.htmladmin/index.php', '/admincp', '/admincp.php', '/app/admin/', '/login', '/logins', '/loign.php', '/yonet/', '/yonetici/', '/yonetim/'
 ]
 
 Modo_De_Uso = u"""\
@@ -884,7 +884,7 @@ Modo_De_Uso = u"""\
   
   -R, --Robots              Indica Si Se Desea Buscar El Archivo Robots.txt.
   
-  -C, --Completo            Indica Hacer Un Escaneo Completo Con 483 Rutas.
+  -C, --Completo            Indica Hacer Un Escaneo Completo Con 497 Rutas.
   
   -T, --Tipo PHP,ASP,HTML   Filtra Por Tipo Las Rutas Que Se Usarán.
   
@@ -900,7 +900,7 @@ Modo_De_Uso = u"""\
                                                 Rutas.txt y Busca El Archivo
                                                 Robots.txt.
   > Angelaz.py -P xD.com -R -C    [*] Agregar -C Hace Un Escaneo Completo Con
-                                      483 Rutas. No Puedes Combinar -C y -L.
+                                      497 Rutas. No Puedes Combinar -C y -L.
   > Angelaz.py -T PHP             [*] Filtrará Las Rutas Para Mostrar Solo PHP
                                       y Agregando Las Que No Tienen Extensión.
   > Angelaz.py -T "ASP HTML"      [*] Filtrará Las Rutas De Archivos Mostrando
@@ -1024,5 +1024,6 @@ if __name__ == "__main__":
 			time.sleep(.01)
 			if Ruta.startswith("/"): threading.Thread(target=Escanear, args=(Pagina, Ruta, )).start()
 			else: threading.Thread(target=Escanear, args=(Pagina, "/" + Ruta, )).start()
+
 
 
