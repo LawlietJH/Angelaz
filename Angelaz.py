@@ -842,9 +842,9 @@ RutasFast = [
  'panel-administracion/index.html', 'panel-administracion/index.php', 'panel-administracion/login.html', 'panel-administracion/login.php', 'rcjakar/admin/login.php', 'siteadmin/index.php', 'siteadmin/login.html', 'siteadmin/login.php', 'user.html', 'user.php', 'webadmin.html', 'webadmin.php', 'webadmin/', 'webadmin/admin.html', 'webadmin/admin.php', 'webadmin/index.html', 'webadmin/index.php', 'webadmin/login.html', 'webadmin/login.php', 'wp-login.php'
 ]
 
-# 483 Rutas + 14 = 497.		Agregadas a partir de v1.2.8: '/admin1/index.php', '/International/AdminPanel/Login.aspx', '/SuperAdmin/', '/adm', '/admin/account.htmladmin/index.php', '/admincp', '/admincp.php', '/app/admin/', '/login', '/logins', '/loign.php', '/yonet/', '/yonetici/', '/yonetim/'
+# 483 Rutas + 15 = 498.		Agregadas a partir de v1.2.8: '/admini/', '/admin1/index.php', '/International/AdminPanel/Login.aspx', '/SuperAdmin/', '/adm', '/admin/account.htmladmin/index.php', '/admincp', '/admincp.php', '/app/admin/', '/login', '/logins', '/loign.php', '/yonet/', '/yonetici/', '/yonetim/'
 RutasFull = [
- '/ADMIN/', '/ADMIN/login.html', '/ADMIN/login.php', '/ADMON/', '/Admin/', '/Admin/private/', '/AdminTools/', '/AdminWeb/', '/Database_Administration/', '/Indy_admin/', '/LiveUser_Admin/', '/Lotus_Domino_Admin/', '/Server.asp', '/Server.html', '/Server.php', '/Server/', '/ServerAdministrator/', '/Super-Admin/', '/SysAdmin/', '/SysAdmin2/',
+ '/ADMIN/', '/ADMIN/login.html', '/ADMIN/login.php', '/ADMON/', '/Admin/', '/admini/', '/Admin/private/', '/AdminTools/', '/AdminWeb/', '/Database_Administration/', '/Indy_admin/', '/LiveUser_Admin/', '/Lotus_Domino_Admin/', '/Server.asp', '/Server.html', '/Server.php', '/Server/', '/ServerAdministrator/', '/Super-Admin/', '/SysAdmin/', '/SysAdmin2/',
  '/UserLogin/', '/WebAdmin/', '/_adm/', '/_adm_/', '/_admin/', '/_admin_/', '/_administrator/', '/_administrator_/', '/acceso.asp', '/acceso.php', '/access.php', '/access/', '/account.asp', '/account.html', '/account.php', '/account/', '/acct_login/', '/adm.asp', '/adm.html', '/adm.php',
  '/adm/', '/adm/admloginuser.asp', '/adm/admloginuser.php', '/adm/index.asp', '/adm/index.html', '/adm/index.php', '/adm2/', '/adm_auth.asp', '/adm_auth.php', '/admin', '/admin-login.asp', '/admin-login.html', '/admin-login.php', '/admin-login.php/', '/admin.asp', '/admin.html', '/admin.php', '/admin/', '/admin/AdminDashboard.php', '/admin/AdminHome.php',
  '/admin/CPhome.php', '/admin/ManageAdmin.php', '/admin/account.asp', '/admin/account.html', '/admin/account.php', '/admin/add-room.php', '/admin/add-slider.php', '/admin/add.php', '/admin/add_banner.php/', '/admin/add_gallery_image.php', '/admin/add_testimonials.php', '/admin/addblog.php', '/admin/adm.php', '/admin/admin-home.php', '/admin/admin-login.asp', '/admin/admin-login.html', '/admin/admin-login.php', '/admin/admin.asp', '/admin/admin.html', '/admin/admin.php',
@@ -900,7 +900,7 @@ Modo_De_Uso = u"""\
                                                 Rutas.txt y Busca El Archivo
                                                 Robots.txt.
   > Angelaz.py -P xD.com -R -C    [*] Agregar -C Hace Un Escaneo Completo Con
-                                      497 Rutas. No Puedes Combinar -C y -L.
+                                      498 Rutas. No Puedes Combinar -C y -L.
   > Angelaz.py -T PHP             [*] Filtrará Las Rutas Para Mostrar Solo PHP
                                       y Agregando Las Que No Tienen Extensión.
   > Angelaz.py -T "ASP HTML"      [*] Filtrará Las Rutas De Archivos Mostrando
