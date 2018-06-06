@@ -69,7 +69,7 @@
                                                       Rutas.txt y Busca El Archivo
                                                       Robots.txt.
       > Angelaz.py -P xD.com -R -C    [*] Agregar -C Hace Un Escaneo Completo Con
-                                          483 Rutas. No Puedes Combinar -C y -L.
+                                          498 Rutas. No Puedes Combinar -C y -L.
       > Angelaz.py -T PHP             [*] Filtrará Las Rutas Para Mostrar Solo PHP
                                           y Agregando Las Que No Tienen Extensión.
       > Angelaz.py -T "ASP HTML"      [*] Filtrará Las Rutas De Archivos Mostrando
