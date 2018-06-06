@@ -53,7 +53,7 @@
          
          -R, --Robots              Indica Si Se Desea Buscar El Archivo Robots.txt.
   
-         -C, --Completo            Indica Hacer Un Escaneo Completo Con 483 Rutas.
+         -C, --Completo            Indica Hacer Un Escaneo Completo Con 498 Rutas.
   
          -T, --Tipo PHP,ASP,HTML   Filtra Por Tipo Las Rutas Que Se Usarán.
 
